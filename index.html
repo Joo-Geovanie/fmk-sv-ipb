@@ -1,0 +1,1571 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMK SV IPB - Forum Mahasiswa Kristen Sekolah Vokasi IPB</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2D4263;
+            --secondary: #C84B31;
+            --accent: #ECDBBA;
+            --accent-bright: #FFD93D;
+            --warm: #E17055;
+            --success: #6BCB77;
+            --purple: #9D5C96;
+            --teal: #4DD0E1;
+            --background: #F8F9FA;
+            --surface: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #6C757D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background: var(--background);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Navbar Custom */
+        .navbar {
+            background: var(--surface) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary) !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--accent);
+            color: var(--secondary);
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 66, 99, 0.75) 0%, rgba(200, 75, 49, 0.65) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 5rem;
+            font-weight: 400;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-bright), var(--secondary));
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(200, 75, 49, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 75, 49, 0.5);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Verse Section */
+        .verse-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+        }
+
+        .verse-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .verse-card i {
+            font-size: 2.5rem;
+            color: var(--accent-bright);
+            margin-bottom: 1rem;
+        }
+
+        .verse-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .verse-ref {
+            color: var(--accent-bright);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* News Card */
+        .news-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .news-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .news-card-body {
+            padding: 1.5rem;
+        }
+
+        .news-card-category {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .news-card-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .news-card-date {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .news-card-date i {
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+
+        /* PKK Section */
+        .pkk-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .pkk-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+
+        .pkk-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--purple), var(--teal));
+            color: white;
+            box-shadow: 0 6px 20px rgba(157, 92, 150, 0.4);
+        }
+
+        .schedule-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .schedule-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .schedule-day {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .schedule-time {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .schedule-location {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Form Doa Section */
+        .form-doa-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .form-label {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(200, 75, 49, 0.25);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--success), var(--teal));
+            border: none;
+            color: white;
+            padding: 0.85rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(107, 203, 119, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 203, 119, 0.5);
+        }
+
+        /* Menabur Section */
+        .highlight-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            height: 100%;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: var(--secondary);
+        }
+
+        .highlight-icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .icon-menabur {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .icon-kasih {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .icon-event-special {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: var(--primary);
+        }
+
+        /* Pengurus Card */
+        .pengurus-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .pengurus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .pengurus-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(200, 75, 49, 0.3);
+        }
+
+        .pengurus-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pengurus-position {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .pengurus-contact {
+            margin-top: 1.5rem;
+        }
+
+        .pengurus-contact a {
+            display: inline-block;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            line-height: 38px;
+            margin: 0 0.25rem;
+            transition: all 0.3s;
+        }
+
+        .pengurus-contact a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer h5 {
+            color: var(--accent-bright);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            line-height: 42px;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-bright);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Event Page Container */
+        #event-page-container {
+            min-height: 60vh;
+            padding: 3rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .navbar-brand img {
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="images/logo-fmk.png" alt="Logo FMK">
+                FMK SV IPB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#media">Media Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pkk">PKK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#form-doa">Form Doa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menabur">Menabur</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Event
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-event="paskah">Paskah</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="kunjungan-kasih">Kasih Peduli</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="kpmb">KPMB</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="natal">Natal</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pengurus">Pengurus</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section with Video Background -->
+        <section class="hero" id="home">
+            <div class="hero-video-container">
+                <!-- Video Background - Dummy church/worship video -->
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="videos/Salib.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title" data-aos="fade-up">Welcome Home</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">FMK SV IPB 2026 - THE VESSEL OF GOD</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#about" class="btn btn-outline-custom">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <i class="bi bi-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Daily Verse Section -->
+        <section class="verse-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8" data-aos="fade-up">
+                        <div class="verse-card">
+                            <i class="bi bi-book"></i>
+                            <p class="verse-text">"Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan."</p>
+                            <p class="verse-ref">- Yeremia 29:11</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About FMK Section -->
+        <section id="about">
+            <div class="container">
+                <div class="row justify-content-center" data-aos="fade-up">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="section-title">The Vessel of God</h2>
+                        <p class="section-subtitle">Menjadi Bejana Allah yang Dipakai untuk KemuliaNya</p>
+                        <p class="lead text-muted mb-4">Forum Mahasiswa Kristen Sekolah Vokasi IPB hadir sebagai wadah bagi mahasiswa Kristen untuk bertumbuh dalam iman, membangun persaudaraan yang kuat, dan melayani sesama dengan kasih Kristus.</p>
+                        <p class="text-muted">Tema tahun 2026 kami adalah <strong>"The Vessel of God"</strong> - kami percaya bahwa setiap mahasiswa adalah bejana pilihan Allah yang dipanggil untuk dipakai bagi kemuliaan-Nya. Seperti bejana tanah liat yang dibentuk oleh tangan Sang Pencipta, kami menyerahkan diri untuk diperbaharui dan dipakai sesuai kehendak-Nya di kampus dan masyarakat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Berita Section -->
+        <section id="media" class="bg-white">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Media Berita</h2>
+                <p class="section-subtitle" data-aos="fade-up">Update terbaru kegiatan dan dokumentasi FMK</p>
+                
+                <div class="row g-4">
+                    <!-- News Card 1 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop" alt="Ibadah Paskah 2025">
+                            <div class="news-card-body">
+                                <span class="news-card-category">Event</span>
+                                <h3 class="news-card-title">Perayaan Paskah 2025 Penuh Sukacita</h3>
+                                <p class="news-card-excerpt">FMK SV IPB merayakan kebangkitan Kristus dengan penuh sukacita melalui ibadah khusus dan kegiatan bersama...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>20 April 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 2 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop" alt="PKK">
+                            <div class="news-card-body">
+                                <span class="news-card-category" style="background: var(--success);">PKK</span>
+                                <h3 class="news-card-title">Pembinaan Kelompok Kecil Semester Baru</h3>
+                                <p class="news-card-excerpt">Kelompok kecil FMK memulai semester baru dengan semangat bertumbuh bersama dalam firman Tuhan...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>15 Maret 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 3 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop" alt="Kasih Peduli">
+                            <div class="news-card-body">
+                                <span class="news-card-category" style="background: var(--warm);">Kasih Peduli</span>
+                                <h3 class="news-card-title">Program Kasih Peduli untuk Sesama</h3>
+                                <p class="news-card-excerpt">FMK mengadakan program kasih peduli dengan mengunjungi dan memberkati mahasiswa yang membutuhkan...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>10 Maret 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 4 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600&h=400&fit=crop" alt="Renungan">
+                            <div class="news-card-body">
+                                <span class="news-card-category" style="background: var(--primary);">Renungan</span>
+                                <h3 class="news-card-title">Renungan: Hidup Sebagai Bejana Allah</h3>
+                                <p class="news-card-excerpt">Merenungkan arti menjadi bejana Allah yang dipakai untuk kemuliaan-Nya dalam kehidupan sehari-hari...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>5 Maret 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 5 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop" alt="KPMB">
+                            <div class="news-card-body">
+                                <span class="news-card-category" style="background: var(--accent-bright); color: var(--text-primary);">KPMB</span>
+                                <h3 class="news-card-title">Menyambut Mahasiswa Baru dengan Hangat</h3>
+                                <p class="news-card-excerpt">Kebaktian Penyambutan Mahasiswa Baru menjadi momen spesial untuk menyambut keluarga baru FMK...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>1 Februari 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 6 -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="news-card">
+                            <img src="https://images.unsplash.com/photo-1482575832494-771f74bf6857?w=600&h=400&fit=crop" alt="Dokumentasi">
+                            <div class="news-card-body">
+                                <span class="news-card-category" style="background: #FF6B6B;">Dokumentasi</span>
+                                <h3 class="news-card-title">Galeri Foto Kegiatan FMK 2025</h3>
+                                <p class="news-card-excerpt">Dokumentasi berbagai kegiatan FMK sepanjang tahun 2025 yang penuh berkat dan sukacita...</p>
+                                <div class="news-card-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>25 Januari 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5" data-aos="fade-up">
+                    <a href="news.html" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                        <i class="bi bi-plus-circle me-2"></i>Lihat Semua Berita
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PKK Section -->
+        <section id="pkk" class="pkk-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Pembinaan Kelompok Kecil (PKK)</h2>
+                <p class="section-subtitle" data-aos="fade-up">Bertumbuh bersama dalam kelompok kecil yang saling menguatkan</p>
+                
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="pkk-card">
+                            <h3 class="text-primary mb-3">Apa itu PKK?</h3>
+                            <p class="text-muted">PKK (Pembinaan Kelompok Kecil) adalah kelompok persekutuan kecil yang bertemu secara rutin untuk belajar firman Tuhan, saling mendoakan, dan menguatkan iman satu sama lain. Setiap kelompok terdiri dari 6-10 mahasiswa dengan seorang mentor yang akan membimbing.</p>
+                            
+                            <h4 class="text-primary mt-4 mb-3">Kegiatan PKK:</h4>
+                            <ul class="text-muted">
+                                <li class="mb-2">Sharing firman Tuhan dan penerapannya</li>
+                                <li class="mb-2">Saling mendoakan pokok doa</li>
+                                <li class="mb-2">Membangun persahabatan rohani</li>
+                                <li class="mb-2">Kegiatan fun bersama (outbound, gathering, dll)</li>
+                            </ul>
+
+                            <div class="alert alert-info mt-4">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <strong>Catatan:</strong> PKK bersifat terbuka untuk semua mahasiswa Kristen. Anda bisa langsung bergabung dengan menghubungi kontak di bawah!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="pkk-card">
+                            <div class="pkk-icon mx-auto mb-3">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h3 class="mb-4 text-center">Jadwal PKK</h3>
+                            
+                            <div class="schedule-card">
+                                <div class="schedule-day">
+                                    <i class="bi bi-calendar-check"></i>
+                                    Rabu - Ibadah PKK
+                                </div>
+                                <div class="schedule-time">
+                                    <i class="bi bi-clock me-1"></i>19.00 WIB
+                                </div>
+                                <div class="schedule-location">
+                                    <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Area Kampus SV IPB
+                                </div>
+                            </div>
+
+                            <p class="text-muted mt-3 small text-center">Jadwal per kelompok dapat disesuaikan dengan kesepakatan anggota</p>
+
+                            <a href="https://wa.me/6281234567890?text=Halo%20FMK,%20saya%20ingin%20bergabung%20dengan%20PKK" target="_blank" class="btn btn-primary-custom mt-3 w-100">
+                                <i class="bi bi-whatsapp me-2"></i>Hubungi Kami untuk Bergabung
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Ibadah Rutin -->
+                <div class="row mt-5">
+                    <div class="col-12" data-aos="fade-up">
+                        <div class="pkk-card">
+                            <h3 class="text-primary mb-4 text-center">Program Ibadah Rutin FMK</h3>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="schedule-card">
+                                        <div class="schedule-day">
+                                            <i class="bi bi-calendar-event"></i>
+                                            Persekutuan Jumat Malam
+                                        </div>
+                                        <div class="schedule-time">
+                                            <i class="bi bi-clock me-1"></i>Jumat, 19.00 WIB
+                                        </div>
+                                        <div class="schedule-location">
+                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="schedule-card">
+                                        <div class="schedule-day">
+                                            <i class="bi bi-calendar-event"></i>
+                                            Doa Pagi
+                                        </div>
+                                        <div class="schedule-time">
+                                            <i class="bi bi-clock me-1"></i>Kamis, 06.00 WIB
+                                        </div>
+                                        <div class="schedule-location">
+                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="schedule-card">
+                                        <div class="schedule-day">
+                                            <i class="bi bi-calendar-event"></i>
+                                            Doa Malam
+                                        </div>
+                                        <div class="schedule-time">
+                                            <i class="bi bi-clock me-1"></i>Rabu, 19.00 WIB
+                                        </div>
+                                        <div class="schedule-location">
+                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-muted small mt-4 text-center">
+                                <i class="bi bi-exclamation-circle me-1"></i>
+                                Jadwal dan lokasi bersifat tentatif, dapat berubah sewaktu-waktu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Doa Section -->
+        <section id="form-doa" class="form-doa-section">
+            <div class="container">
+                <h2 class="section-title text-white" data-aos="fade-up">Form Permohonan Doa</h2>
+                <p class="section-subtitle text-white" data-aos="fade-up">Kami ingin mendoakan Anda. Bagikan pokok doa Anda kepada kami</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="form-container">
+                            <form id="prayer-form" action="https://docs.google.com/forms/d/e/[FORM_ID]/formResponse" method="POST" target="hidden_iframe">
+                                <div class="mb-4">
+                                    <label for="name" class="form-label">Nama (Opsional)</label>
+                                    <input type="text" class="form-control" id="name" name="entry.1234567890" placeholder="Nama Anda atau Anonim">
+                                    <small class="text-muted">Anda bisa mengosongkan jika ingin anonim</small>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="contact" class="form-label">Email/Kontak (Opsional)</label>
+                                    <input type="text" class="form-control" id="contact" name="entry.0987654321" placeholder="Email atau nomor WhatsApp">
+                                    <small class="text-muted">Agar kami bisa menghubungi Anda kembali</small>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="category" class="form-label">Kategori Doa</label>
+                                    <select class="form-select" id="category" name="entry.1111111111" required>
+                                        <option value="">Pilih kategori...</option>
+                                        <option value="Permohonan Pribadi">Permohonan Pribadi</option>
+                                        <option value="Keluarga">Keluarga</option>
+                                        <option value="Akademik/Kuliah">Akademik/Kuliah</option>
+                                        <option value="Pekerjaan">Pekerjaan</option>
+                                        <option value="Kesehatan">Kesehatan</option>
+                                        <option value="Hubungan">Hubungan</option>
+                                        <option value="Pelayanan">Pelayanan</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="prayer-request" class="form-label">Pokok Doa <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="prayer-request" name="entry.2222222222" rows="5" placeholder="Tuliskan pokok doa Anda di sini..." required></textarea>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Apakah Anda ingin didoakan bersama dalam PKK?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="entry.3333333333" id="pkk-yes" value="Ya" checked>
+                                        <label class="form-check-label" for="pkk-yes">
+                                            Ya, saya ingin didoakan dalam PKK
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="entry.3333333333" id="pkk-no" value="Tidak">
+                                        <label class="form-check-label" for="pkk-no">
+                                            Tidak, cukup tim FMK saja
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <small>Semua pokok doa yang masuk akan kami doakan. Kami menghargai privasi Anda dan tidak akan membagikan informasi ini tanpa izin.</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-submit">
+                                    <i class="bi bi-send me-2"></i>Kirim Pokok Doa
+                                </button>
+                            </form>
+
+                            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+                            <div id="form-success" class="alert alert-success mt-3" style="display:none;">
+                                <i class="bi bi-check-circle me-2"></i>
+                                <strong>Terima kasih!</strong> Pokok doa Anda telah kami terima. Kami akan mendoakan Anda.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menabur Section -->
+        <section id="menabur" class="bg-white">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Menabur</h2>
+                <p class="section-subtitle" data-aos="fade-up">Berkat untuk Memberkati - Platform Donasi & Persembahan</p>
+                
+                <div class="row g-4 mt-3">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="highlight-card">
+                            <div class="highlight-icon icon-menabur">
+                                <i class="bi bi-heart-fill"></i>
+                            </div>
+                            <h3>Persembahan</h3>
+                            <p>Dukung kegiatan rohani FMK SV IPB melalui persembahan Anda</p>
+                            <p class="text-muted small">Persembahan akan digunakan untuk kegiatan ibadah, PKK, dan pelayanan mahasiswa</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="highlight-card">
+                            <div class="highlight-icon icon-kasih">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h3>Kasih Peduli</h3>
+                            <p>Bantu mahasiswa yang membutuhkan di sekitar kita</p>
+                            <p class="text-muted small">Program bantuan untuk mahasiswa yang sedang menghadapi kesulitan finansial atau bencana</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="highlight-card">
+                            <div class="highlight-icon icon-event-special">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                            <h3>Event Khusus</h3>
+                            <p>Dukung event besar seperti Paskah, Natal, dan KPMB</p>
+                            <p class="text-muted small">Bantuan untuk penyelenggaraan event-event besar FMK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <div class="card border-0 shadow-lg">
+                            <div class="card-body p-4 text-center">
+                                <h4 class="text-primary mb-3">Informasi Donasi</h4>
+                                <p class="text-muted mb-4">Transfer ke rekening resmi FMK SV IPB:</p>
+                                
+                                <div class="alert alert-light">
+                                    <p class="mb-2"><strong>Bank:</strong> BCA</p>
+                                    <p class="mb-2"><strong>No. Rekening:</strong> 1234567890</p>
+                                    <p class="mb-0"><strong>Atas Nama:</strong> FMK SV IPB</p>
+                                </div>
+
+                                <p class="text-muted small mt-3">Atau scan QR Code di bawah ini:</p>
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <i class="bi bi-qr-code" style="font-size: 8rem; color: var(--secondary);"></i>
+                                    <p class="text-muted small mt-2">QR Code QRIS / E-Wallet</p>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <small>Mohon konfirmasi donasi Anda melalui WhatsApp: <strong>+62 812-3456-7890</strong></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12 text-center" data-aos="fade-up">
+                        <h4 class="text-primary mb-3">Laporan Transparansi</h4>
+                        <p class="text-muted">Kami berkomitmen untuk transparan dalam pengelolaan donasi. Laporan keuangan dapat diakses melalui:</p>
+                        <a href="#" class="btn btn-outline-primary rounded-pill mt-2">
+                            <i class="bi bi-file-earmark-text me-2"></i>Lihat Laporan Keuangan
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengurus Section -->
+        <section id="pengurus">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Pengurus FMK SV IPB 2026</h2>
+                <p class="section-subtitle" data-aos="fade-up">Tim pelayan yang dipercayakan untuk melayani keluarga FMK</p>
+                
+                <div class="row g-4 mt-3">
+                    <!-- Ketua Umum -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">JD</div>
+                            <h4 class="pengurus-name">John Doe</h4>
+                            <p class="pengurus-position">Ketua Umum</p>
+                            <p class="text-muted small">Memimpin dan mengkoordinasi seluruh kegiatan FMK</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:johndoe@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567890" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/johndoe" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Ketua -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">JS</div>
+                            <h4 class="pengurus-name">Jane Smith</h4>
+                            <p class="pengurus-position">Wakil Ketua</p>
+                            <p class="text-muted small">Mendampingi Ketua Umum dalam menjalankan organisasi</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:janesmith@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567891" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/janesmith" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sekretaris -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">AB</div>
+                            <h4 class="pengurus-name">Alice Brown</h4>
+                            <p class="pengurus-position">Sekretaris</p>
+                            <p class="text-muted small">Mengelola administrasi dan dokumentasi FMK</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:alicebrown@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567892" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/alicebrown" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bendahara -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">MJ</div>
+                            <h4 class="pengurus-name">Michael Johnson</h4>
+                            <p class="pengurus-position">Bendahara</p>
+                            <p class="text-muted small">Mengelola keuangan dan laporan finansial FMK</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:michaelj@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567893" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/michaelj" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Koordinator PKK -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">SD</div>
+                            <h4 class="pengurus-name">Sarah Davis</h4>
+                            <p class="pengurus-position">Koordinator PKK</p>
+                            <p class="text-muted small">Mengkoordinasi seluruh kelompok kecil FMK</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:sarahd@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567894" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/sarahd" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Koordinator Event -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="pengurus-card">
+                            <div class="pengurus-photo-placeholder">DW</div>
+                            <h4 class="pengurus-name">David Wilson</h4>
+                            <p class="pengurus-position">Koordinator Event</p>
+                            <p class="text-muted small">Merencanakan dan melaksanakan event-event FMK</p>
+                            <div class="pengurus-contact">
+                                <a href="mailto:davidw@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                                <a href="https://wa.me/6281234567895" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="https://instagram.com/davidw" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mt-5 text-center" data-aos="fade-up">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <strong>Catatan untuk Admin:</strong> Ganti foto, nama, dan kontak pengurus sesuai data yang sebenarnya. Untuk foto, simpan di folder <code>images/</code> dan ganti <code>&lt;div class="pengurus-photo-placeholder"&gt;</code> dengan <code>&lt;img src="images/nama-foto.jpg" class="pengurus-photo-placeholder" alt="Nama"&gt;</code>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Event Page Container (for SPA Event pages) -->
+    <div id="event-page-container" style="display:none;"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5>FMK SV IPB</h5>
+                    <p>Forum Mahasiswa Kristen Sekolah Vokasi IPB - Bertumbuh dalam iman, komunitas, dan pelayanan.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/fmk_svipb" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://youtube.com/@fmksvipb" target="_blank"><i class="bi bi-youtube"></i></a>
+                        <a href="mailto:fmk@apps.ipb.ac.id"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Kontak</h5>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i>Sekolah Vokasi IPB, Bogor</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i>fmk@apps.ipb.ac.id</p>
+                    <p><i class="bi bi-phone-fill me-2"></i>+62 812-3456-7890</p>
+                    <p><i class="bi bi-clock-fill me-2"></i>Jadwal ibadah bersifat tentatif</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Link Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#pkk">Pembinaan Kelompok Kecil</a></li>
+                        <li><a href="#form-doa">Form Permohonan Doa</a></li>
+                        <li><a href="#menabur">Donasi & Persembahan</a></li>
+                        <li><a href="#pengurus">Pengurus FMK</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Forum Mahasiswa Kristen SV IPB. The Vessel of God.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                
+                // Skip if it's an event link
+                if (this.hasAttribute('data-event')) {
+                    return;
+                }
+                
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        const navbarCollapse = document.querySelector('.navbar-collapse');
+                        if (navbarCollapse.classList.contains('show')) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            bsCollapse.hide();
+                        }
+                    }
+                }
+            });
+        });
+
+        // Event routing (load from pages folder)
+        document.querySelectorAll('[data-event]').forEach(link => {
+            link.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const eventName = this.getAttribute('data-event');
+                await loadEventPage(eventName);
+            });
+        });
+
+        async function loadEventPage(eventName) {
+            const mainContent = document.getElementById('main-content');
+            const eventContainer = document.getElementById('event-page-container');
+            
+            // Hide main content, show event container
+            mainContent.style.display = 'none';
+            eventContainer.style.display = 'block';
+            
+            // Show loading
+            eventContainer.innerHTML = `
+                <div class="container py-5 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Memuat halaman event...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`pages/${eventName}.html`);
+                if (response.ok) {
+                    const html = await response.text();
+                    eventContainer.innerHTML = html;
+                    
+                    // Add back button
+                    const backButton = document.createElement('div');
+                    backButton.className = 'container mt-4 mb-4';
+                    backButton.innerHTML = `
+                        <button class="btn btn-outline-primary" onclick="backToHome()">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                        </button>
+                    `;
+                    eventContainer.insertBefore(backButton, eventContainer.firstChild);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Re-initialize AOS
+                    AOS.refresh();
+                } else {
+                    showEventNotFound(eventName);
+                }
+            } catch (error) {
+                console.error('Error loading event page:', error);
+                showEventPlaceholder(eventName);
+            }
+
+            // Close mobile menu if open
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                bsCollapse.hide();
+            }
+        }
+
+        function backToHome() {
+            const mainContent = document.getElementById('main-content');
+            const eventContainer = document.getElementById('event-page-container');
+            
+            mainContent.style.display = 'block';
+            eventContainer.style.display = 'none';
+            eventContainer.innerHTML = '';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showEventNotFound(eventName) {
+            const eventContainer = document.getElementById('event-page-container');
+            const titles = {
+                'paskah': 'Paskah',
+                'kunjungan-kasih': 'Kasih Peduli',
+                'kpmb': 'KPMB',
+                'natal': 'Natal'
+            };
+            
+            eventContainer.innerHTML = `
+                <section class="py-5">
+                    <div class="container text-center">
+                        <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
+                        <h2 class="mt-3">Halaman Event Tidak Ditemukan</h2>
+                        <p class="text-muted">Maaf, halaman event "${titles[eventName] || eventName}" belum tersedia.</p>
+                        <button class="btn btn-primary-custom mt-3" onclick="backToHome()">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                        </button>
+                    </div>
+                </section>
+            `;
+        }
+
+        function showEventPlaceholder(eventName) {
+            const eventContainer = document.getElementById('event-page-container');
+            const titles = {
+                'paskah': 'Perayaan Paskah',
+                'kunjungan-kasih': 'Kasih Peduli',
+                'kpmb': 'KPMB - Kebaktian Penyambutan Mahasiswa Baru',
+                'natal': 'Perayaan Natal'
+            };
+            
+            eventContainer.innerHTML = `
+                <section class="py-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 text-center">
+                                <i class="bi bi-hammer text-secondary mb-3" style="font-size: 3rem;"></i>
+                                <h2 class="mb-3">${titles[eventName] || eventName}</h2>
+                                <p class="text-muted">Halaman event ini sedang dalam pengembangan. Informasi lengkap akan segera tersedia.</p>
+                                <button class="btn btn-primary-custom mt-3" onclick="backToHome()">
+                                    <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Prayer form submission
+        document.getElementById('prayer-form').addEventListener('submit', function(e) {
+            // Form akan disubmit ke Google Form
+            // Setelah submit, tampilkan pesan sukses
+            setTimeout(function() {
+                document.getElementById('form-success').style.display = 'block';
+                document.getElementById('prayer-form').reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    document.getElementById('form-success').style.display = 'none';
+                }, 5000);
+            }, 1000);
+        });
+
+        // Random verse generator
+        const verses = [
+            {
+                text: "Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan.",
+                ref: "Yeremia 29:11"
+            },
+            {
+                text: "Kasihilah TUHAN, Allahmu, dengan segenap hatimu dan dengan segenap jiwamu dan dengan segenap kekuatanmu.",
+                ref: "Ulangan 6:5"
+            },
+            {
+                text: "Jangan takut, sebab Aku menyertai engkau, jangan bimbang, sebab Aku ini Allahmu; Aku akan meneguhkan, bahkan akan menolong engkau; Aku akan memegang engkau dengan tangan kanan-Ku yang membawa kemenangan.",
+                ref: "Yesaya 41:10"
+            },
+            {
+                text: "Mintalah, maka akan diberikan kepadamu; carilah, maka kamu akan mendapat; ketoklah, maka pintu akan dibukakan bagimu.",
+                ref: "Matius 7:7"
+            },
+            {
+                text: "Bersukacitalah senantiasa. Tetaplah berdoa. Mengucap syukurlah dalam segala hal, sebab itulah yang dikehendaki Allah di dalam Kristus Yesus bagi kamu.",
+                ref: "1 Tesalonika 5:16-18"
+            },
+            {
+                text: "Percayalah kepada TUHAN dengan segenap hatimu, dan janganlah bersandar kepada pengertianmu sendiri. Akuilah Dia dalam segala lakumu, maka Ia akan meluruskan jalanmu.",
+                ref: "Amsal 3:5-6"
+            }
+        ];
+
+        // Load random verse on page load
+        function loadRandomVerse() {
+            const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+            const verseText = document.querySelector('.verse-text');
+            const verseRef = document.querySelector('.verse-ref');
+            
+            if (verseText && verseRef) {
+                verseText.textContent = `"${randomVerse.text}"`;
+                verseRef.textContent = `- ${randomVerse.ref}`;
+            }
+        }
+
+        // Load random verse when page loads
+        window.addEventListener('load', loadRandomVerse);
+    </script>
+</body>
+</html>
