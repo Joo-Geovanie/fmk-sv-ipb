@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Berita - FMK SV IPB</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1E88E5;
+            --secondary: #E91E63;
+            --accent: #FFD93D;
+            --success: #66BB6A;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background: var(--background);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--surface);
+            box-shadow: 0 2px 15px rgba(30, 136, 229, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+        }
+
+        /* Article Header */
+        .article-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5rem 0 3rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .article-meta i {
+            margin-right: 0.5rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: -3rem;
+            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .article-body {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.9;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Share Buttons */
+        .share-section {
+            background: var(--background);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .share-btn-facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .share-btn-twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Related News */
+        .related-news {
+            margin-top: 4rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(233, 30, 99, 0.2);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-card-body {
+            padding: 1.5rem;
+        }
+
+        .news-card-category {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Back Button */
+        .btn-back {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #1565C0 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-image {
+                height: 300px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Image Slider */
+        .article-gallery {
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .gallery-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem;
+            font-size: 1rem;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            z-index: 10;
+            border: none;
+        }
+
+        .slider-nav:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            padding: 0;
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .slider-container {
+                height: 300px;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-fmk.png" alt="Logo FMK">
+                FMK SV IPB
+            </a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <div class="article-header">
+        <div class="container">
+            <a href="index.html" class="btn-back mb-4">
+                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+            </a>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <span class="article-category" id="category">Event</span>
+                    <h1 class="article-title" id="title">Memuat...</h1>
+                    <div class="article-meta">
+                        <span><i class="bi bi-calendar3"></i><span id="date">-</span></span>
+                        <span><i class="bi bi-person"></i><span id="author">Admin FMK</span></span>
+                        <span><i class="bi bi-eye"></i><span id="views">-</span> views</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <article class="article-content" data-aos="fade-up">
+                    <img id="featured-image" src="" alt="Featured Image" class="article-image">
+                    
+                    <div class="article-body" id="article-body">
+                        <p>Memuat konten artikel...</p>
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="share-section">
+                        <h4 class="mb-3"><i class="bi bi-share me-2"></i>Bagikan Artikel</h4>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn share-btn-facebook" id="share-facebook">
+                                <i class="bi bi-facebook"></i> Facebook
+                            </a>
+                            <a href="#" class="share-btn share-btn-twitter" id="share-twitter">
+                                <i class="bi bi-twitter"></i> Twitter
+                            </a>
+                            <a href="#" class="share-btn share-btn-whatsapp" id="share-whatsapp">
+                                <i class="bi bi-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Related News -->
+                <div class="related-news" data-aos="fade-up">
+                    <h3 class="mb-4">Berita Terkait</h3>
+                    <div class="row g-4" id="related-news">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Forum Mahasiswa Kristen SV IPB. The Vessel of God.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Data berita (dalam prakteknya bisa dari API/database)
+        const newsData = {
+            1: {
+                title: "Perayaan Paskah 2025 Penuh Sukacita",
+                category: "Event",
+                date: "20 April 2025",
+                author: "Admin FMK",
+                views: "234",
+                image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&h=600&fit=crop",
+                gallery: [
+                    {
+                        url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop",
+                        caption: "Suasana Ibadah Paskah 2025"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=600&fit=crop",
+                        caption: "Persekutuan dan Doa Bersama"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+                        caption: "Drama Musikal Paskah"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=600&fit=crop",
+                        caption: "Games dan Kuis Berhadiah"
+                    }
+                ],
+                content: `
+                    <p>Forum Mahasiswa Kristen Sekolah Vokasi IPB merayakan kebangkitan Yesus Kristus dengan penuh sukacita pada Minggu, 20 April 2025. Perayaan Paskah tahun ini mengambil tema "Kebangkitan yang Membawa Harapan Baru" yang dihadiri oleh lebih dari 150 mahasiswa Kristen dari berbagai program studi.</p>
+
+                    <h3>Rangkaian Acara Paskah 2025</h3>
+                    <p>Perayaan dimulai dengan ibadah Paskah khusus di Aula Sekolah Vokasi IPB yang dimulai pukul 08.00 WIB. Ibadah dipimpin oleh Pdt. Jonathan Smith dengan tema kotbah "Kuasa Kebangkitan dalam Hidup Kita".</p>
+
+                    <p>Acara dilanjutkan dengan berbagai kegiatan yang penuh makna:</p>
+                    <ul>
+                        <li>Pujian dan penyembahan yang dipimpin oleh tim music FMK</li>
+                        <li>Drama musikal tentang perjalanan Yesus menuju Golgota</li>
+                        <li>Persekutuan dan makan bersama</li>
+                        <li>Games dan kuis berhadiah dengan tema Paskah</li>
+                        <li>Sesi foto bersama dengan dekorasi Paskah yang meriah</li>
+                    </ul>
+
+                    <h3>Testimoni Peserta</h3>
+                    <p>"Perayaan Paskah tahun ini sangat memberkati saya. Melalui drama dan kotbah, saya kembali diingatkan bahwa pengorbanan Yesus di kayu salib adalah wujud kasih-Nya yang luar biasa," ungkap Sarah, mahasiswi Teknologi Pangan yang hadir dalam acara tersebut.</p>
+
+                    <p>Michael, Koordinator Event FMK, menambahkan, "Kami sangat bersyukur bisa merayakan Paskah bersama-sama sebagai keluarga besar FMK. Antusiasme dan kehadiran adik-adik sangat luar biasa. Ini membuktikan bahwa kerinduan untuk merayakan kebangkitan Kristus masih sangat besar di kalangan mahasiswa."</p>
+
+                    <h3>Komitmen untuk Terus Bertumbuh</h3>
+                    <p>Ketua Umum FMK SV IPB, John Doe, dalam sambutannya menekankan pentingnya hidup dalam kuasa kebangkitan. "Paskah bukan hanya perayaan tahunan, tetapi harus menjadi gaya hidup kita sebagai orang percaya. Kita dipanggil untuk hidup dalam kemenangan dan kuasa kebangkitan Kristus setiap hari," ujarnya.</p>
+
+                    <p>Acara ditutup dengan komitmen bersama untuk terus bertumbuh dalam iman dan menjadi saksi Kristus di kampus Sekolah Vokasi IPB.</p>
+
+                    <p>FMK SV IPB berterima kasih kepada seluruh panitia, sponsor, dan peserta yang telah menjadikan perayaan Paskah 2025 ini begitu berkesan dan bermakna. Tuhan Yesus memberkati kita semua!</p>
+                `
+            },
+            2: {
+                title: "Pembinaan Kelompok Kecil Semester Baru",
+                category: "PKK",
+                date: "15 Maret 2025",
+                author: "Admin FMK",
+                views: "189",
+                image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&h=600&fit=crop",
+                gallery: [
+                    {
+                        url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop",
+                        caption: "Suasana Ibadah Paskah 2025"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=600&fit=crop",
+                        caption: "Persekutuan dan Doa Bersama"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+                        caption: "Drama Musikal Paskah"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=600&fit=crop",
+                        caption: "Games dan Kuis Berhadiah"
+                    }
+                ],
+                content: `
+                    <p>Memasuki semester baru 2025, Forum Mahasiswa Kristen Sekolah Vokasi IPB kembali mengaktifkan program Pembinaan Kelompok Kecil (PKK) dengan semangat baru. Program ini bertujuan untuk membangun persekutuan yang lebih intim dan mendalam di antara mahasiswa Kristen.</p>
+
+                    <h3>Apa itu PKK?</h3>
+                    <p>Pembinaan Kelompok Kecil (PKK) adalah program persekutuan dalam kelompok kecil yang terdiri dari 6-10 mahasiswa dengan seorang mentor. Setiap kelompok bertemu secara rutin setiap minggu untuk belajar firman Tuhan, saling mendoakan, dan membangun persahabatan rohani yang kuat.</p>
+
+                    <h3>Tema PKK Semester Ini</h3>
+                    <p>PKK semester ini mengangkat tema "Growing Together in Christ" atau "Bertumbuh Bersama dalam Kristus". Tema ini dipilih sejalan dengan tema besar FMK tahun 2026 yaitu "The Vessel of God".</p>
+
+                    <p>Materi yang akan dipelajari meliputi:</p>
+                    <ul>
+                        <li>Membangun fondasi iman yang kuat</li>
+                        <li>Hidup sebagai bejana Allah di kampus</li>
+                        <li>Mengembangkan karakter Kristiani</li>
+                        <li>Melayani dengan talenta yang Tuhan berikan</li>
+                        <li>Menghadapi tantangan sebagai mahasiswa Kristen</li>
+                    </ul>
+
+                    <h3>Struktur Pertemuan PKK</h3>
+                    <p>Setiap pertemuan PKK dirancang dengan struktur yang dinamis namun penuh makna:</p>
+                    <ol>
+                        <li><strong>Ice Breaking (10 menit)</strong> - Membangun keakraban dan kenyamanan</li>
+                        <li><strong>Pujian (15 menit)</strong> - Memuji dan menyembah Tuhan bersama</li>
+                        <li><strong>Firman Tuhan (30 menit)</strong> - Belajar dan mendiskusikan firman Tuhan</li>
+                        <li><strong>Sharing (20 menit)</strong> - Berbagi pengalaman dan pergumulan</li>
+                        <li><strong>Doa Bersama (15 menit)</strong> - Saling mendoakan</li>
+                    </ol>
+
+                    <h3>Manfaat Bergabung dengan PKK</h3>
+                    <p>Sarah Davis, Koordinator PKK FMK, menjelaskan berbagai manfaat mengikuti PKK: "PKK bukan hanya sekedar pertemuan rutin, tapi menjadi keluarga rohani yang saling menguatkan. Banyak mahasiswa yang mengalami pertumbuhan iman yang signifikan melalui PKK."</p>
+
+                    <p>Beberapa manfaat yang dapat dirasakan:</p>
+                    <ul>
+                        <li>Pertumbuhan iman yang konsisten</li>
+                        <li>Memiliki teman dan mentor rohani</li>
+                        <li>Tempat sharing yang aman dan nyaman</li>
+                        <li>Dukungan doa dalam pergumulan</li>
+                        <li>Pengalaman pelayanan yang bermakna</li>
+                    </ul>
+
+                    <h3>Cara Bergabung</h3>
+                    <p>Bagi mahasiswa yang tertarik untuk bergabung dengan PKK, dapat menghubungi kontak FMK melalui WhatsApp atau Instagram. PKK terbuka untuk semua mahasiswa Kristen tanpa memandang denominasi gereja.</p>
+
+                    <p>"Kami sangat terbuka dan menyambut siapa saja yang rindu bertumbuh dalam Tuhan. Jangan ragu untuk bergabung, karena di PKK kita adalah keluarga," tutup Sarah dengan hangat.</p>
+                `
+            },
+            3: {
+                title: "Program Kasih Peduli untuk Sesama",
+                category: "Kasih Peduli",
+                date: "10 Maret 2025",
+                author: "Admin FMK",
+                views: "156",
+                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=600&fit=crop",
+                gallery: [
+                    {
+                        url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop",
+                        caption: "Suasana Ibadah Paskah 2025"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=600&fit=crop",
+                        caption: "Persekutuan dan Doa Bersama"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop",
+                        caption: "Drama Musikal Paskah"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=600&fit=crop",
+                        caption: "Games dan Kuis Berhadiah"
+                    }
+                ],
+                content: `
+                    <p>Forum Mahasiswa Kristen Sekolah Vokasi IPB kembali mengadakan program Kasih Peduli pada Minggu, 10 Maret 2025. Program ini merupakan wujud nyata dari kasih Kristus yang diberikan kepada sesama, khususnya kepada mahasiswa yang sedang menghadapi kesulitan.</p>
+
+                    <h3>Latar Belakang Program</h3>
+                    <p>Program Kasih Peduli dilatar belakangi oleh kepedulian FMK terhadap kondisi beberapa mahasiswa yang sedang mengalami kesulitan, baik dari segi ekonomi, kesehatan, maupun bencana yang menimpa keluarga mereka. "Sebagai sesama mahasiswa dan saudara seiman, kita terpanggil untuk saling menanggung beban," ujar David Wilson, Koordinator Event FMK.</p>
+
+                    <h3>Bentuk Bantuan</h3>
+                    <p>Program Kasih Peduli kali ini memberikan bantuan dalam berbagai bentuk:</p>
+                    <ul>
+                        <li><strong>Bantuan Finansial</strong> - Diberikan kepada mahasiswa yang mengalami kesulitan ekonomi untuk membantu kebutuhan sehari-hari dan biaya kuliah</li>
+                        <li><strong>Paket Sembako</strong> - Paket kebutuhan pokok yang diberikan kepada keluarga mahasiswa yang terdampak bencana</li>
+                        <li><strong>Dukungan Moril</strong> - Kunjungan dan doa bersama untuk menguatkan iman mereka yang sedang berjuang</li>
+                        <li><strong>Konseling</strong> - Pendampingan rohani bagi yang membutuhkan</li>
+                    </ul>
+
+                    <h3>Pelaksanaan Program</h3>
+                    <p>Tim Kasih Peduli FMK yang terdiri dari 15 relawan mengunjungi 8 mahasiswa penerima bantuan di hari Minggu. Setiap kunjungan dimulai dengan doa bersama, pemberian bantuan, dan sesi sharing untuk mendengarkan pergumulan mereka.</p>
+
+                    <p>"Kami tidak hanya memberikan bantuan materi, tetapi juga hadir untuk mendengarkan dan mendoakan mereka. Kami ingin mereka tahu bahwa mereka tidak sendirian," ungkap Maria, salah satu relawan Kasih Peduli.</p>
+
+                    <h3>Testimoni Penerima Bantuan</h3>
+                    <p>Budi (nama samaran), salah satu mahasiswa penerima bantuan, mengaku sangat tertolong dengan program ini. "Saya sangat terharu dengan kepedulian teman-teman FMK. Di saat saya merasa hopeless, mereka datang membawa harapan dan dukungan. Ini bukan hanya soal uang, tapi kasih yang tulus," katanya dengan berkaca-kaca.</p>
+
+                    <h3>Sumber Dana</h3>
+                    <p>Dana untuk program Kasih Peduli berasal dari donasi sukarela anggota FMK dan para donatur yang peduli. "Kami sangat bersyukur atas kemurahan hati teman-teman yang telah berdonasi. Semoga Tuhan memberkati setiap pemberian dengan berlimpah," ucap John Doe, Ketua Umum FMK.</p>
+
+                    <h3>Panggilan untuk Terlibat</h3>
+                    <p>FMK mengajak seluruh mahasiswa untuk turut terlibat dalam program Kasih Peduli, baik sebagai donatur maupun relawan. "Kita semua bisa menjadi berkat. Bahkan bantuan terkecil pun sangat berarti bagi mereka yang membutuhkan," tambah David.</p>
+
+                    <p>Program Kasih Peduli akan terus dilanjutkan secara berkala sesuai dengan kebutuhan yang ada. Bagi yang ingin berdonasi atau melaporkan mahasiswa yang membutuhkan bantuan, dapat menghubungi kontak FMK yang tertera di website resmi.</p>
+
+                    <p><em>"Segala sesuatu yang kamu lakukan untuk salah seorang dari saudara-Ku yang paling hina ini, kamu telah melakukannya untuk Aku." - Matius 25:40</em></p>
+                `
+            }
+        };
+
+        // Get article ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id') || '1';
+        
+        // Get article data
+        const article = newsData[articleId];
+
+        if (article) {
+            document.getElementById('title').textContent = article.title;
+            document.getElementById('category').textContent = article.category;
+            document.getElementById('date').textContent = article.date;
+            document.getElementById('author').textContent = article.author;
+            document.getElementById('views').textContent = article.views;
+            document.getElementById('featured-image').src = article.image;
+            
+// Add gallery if exists
+            let contentHtml = article.content;
+            if (article.gallery && article.gallery.length > 0) {
+                galleryImages = article.gallery.map(img => img.url);
+                const galleryHtml = `
+                    <div class="article-gallery">
+                        <div class="slider-container">
+                            <div class="slider-wrapper" id="sliderWrapper">
+                                ${article.gallery.map((img, index) => `
+                                    <div class="gallery-item">
+                                        <img src="${img.url}" alt="${img.caption}">
+                                        <div class="gallery-caption">${img.caption}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button class="slider-nav slider-prev" onclick="moveSlide(-1)">&#10094;</button>
+                            <button class="slider-nav slider-next" onclick="moveSlide(1)">&#10095;</button>
+                            <div class="slider-dots">
+                                ${article.gallery.map((_, index) => `
+                                    <button class="slider-dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                contentHtml = galleryHtml + contentHtml;
+                
+                // Initialize slider after DOM is ready
+                setTimeout(() => {
+                    startAutoSlide();
+                }, 100);
+            }
+            
+            document.getElementById('article-body').innerHTML = contentHtml;
+            
+            // Setup share buttons
+            const currentUrl = window.location.href;
+            const title = article.title;
+
+            document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title)}`;
+            document.getElementById('share-whatsapp').href = `https://wa.me/?text=${encodeURIComponent(title + ' ' + currentUrl)}`;
+        }
+
+        // Load related news
+        const relatedNews = Object.keys(newsData)
+            .filter(id => id !== articleId)
+            .slice(0, 3);
+
+        const relatedNewsHtml = relatedNews.map(id => {
+            const news = newsData[id];
+            return `
+                <div class="col-md-4">
+                    <a href="news-detail.html?id=${id}" style="text-decoration: none;">
+                        <div class="news-card">
+                            <img src="${news.image}" alt="${news.title}">
+                            <div class="news-card-body">
+                                <span class="news-card-category">${news.category}</span>
+                                <h5 class="news-card-title">${news.title}</h5>
+                                <p class="news-card-date"><i class="bi bi-calendar3 me-1"></i>${news.date}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('related-news').innerHTML = relatedNewsHtml;
+    </script>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox').classList.add('active');
+            updateLightboxImage();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+
+        // Close lightbox on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+    <script>
+    // Slider functionality
+    let currentSlide = 0;
+    let autoSlideInterval;
+
+    function moveSlide(direction) {
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        if (!sliderWrapper) return;
+        
+        const slides = sliderWrapper.children;
+        const totalSlides = slides.length;
+        
+        currentSlide += direction;
+        
+        if (currentSlide >= totalSlides) {
+            currentSlide = 0;
+        } else if (currentSlide < 0) {
+            currentSlide = totalSlides - 1;
+        }
+        
+        updateSlider();
+        resetAutoSlide();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+        resetAutoSlide();
+    }
+
+    function updateSlider() {
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+    </script>
+</body>
+</html>

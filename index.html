@@ -22,18 +22,17 @@
     
     <style>
         :root {
-            --primary: #2D4263;
-            --secondary: #C84B31;
-            --accent: #ECDBBA;
-            --accent-bright: #FFD93D;
-            --warm: #E17055;
-            --success: #6BCB77;
-            --purple: #9D5C96;
-            --teal: #4DD0E1;
-            --background: #F8F9FA;
+            /* Warna dari Logo FMK */
+            --primary: #1E88E5;        /* Biru dari logo */
+            --secondary: #E91E63;      /* Pink/Magenta dari logo */
+            --accent: #FFD93D;         /* Gold accent */
+            --light-blue: #64B5F6;     /* Light blue */
+            --light-pink: #F48FB1;     /* Light pink */
+            --success: #66BB6A;        /* Green */
+            --background: #F5F7FA;
             --surface: #FFFFFF;
-            --text-primary: #1A1A1A;
-            --text-secondary: #6C757D;
+            --text-primary: #212121;
+            --text-secondary: #757575;
         }
 
         * {
@@ -61,13 +60,13 @@
         /* Navbar Custom */
         .navbar {
             background: var(--surface) !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 15px rgba(30, 136, 229, 0.1);
             padding: 1rem 0;
             transition: all 0.3s;
         }
 
         .navbar.scrolled {
-            background: rgba(255,255,255,0.95) !important;
+            background: rgba(255,255,255,0.98) !important;
             backdrop-filter: blur(10px);
         }
 
@@ -90,28 +89,47 @@
             color: var(--text-primary) !important;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
         }
 
         .nav-link:hover {
-            color: var(--secondary) !important;
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
         }
 
         .dropdown-menu {
             border: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(30, 136, 229, 0.15);
             border-radius: 12px;
             padding: 0.5rem 0;
         }
 
         .dropdown-item {
             padding: 0.75rem 1.5rem;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
         }
 
         .dropdown-item:hover {
-            background: var(--accent);
-            color: var(--secondary);
+            background: linear-gradient(90deg, rgba(30, 136, 229, 0.1) 0%, transparent 100%);
+            color: var(--primary);
+            border-left-color: var(--secondary);
         }
 
         /* Hero Section with Video Background */
@@ -145,7 +163,7 @@
             height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.6);
+            filter: brightness(0.5);
         }
 
         .hero-overlay {
@@ -154,7 +172,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(45, 66, 99, 0.75) 0%, rgba(200, 75, 49, 0.65) 100%);
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.85) 0%, rgba(233, 30, 99, 0.75) 100%);
             z-index: 1;
         }
 
@@ -168,10 +186,10 @@
 
         .hero-title {
             font-family: 'Pacifico', cursive;
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-weight: 400;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
             margin-bottom: 1rem;
             line-height: 1.2;
         }
@@ -179,9 +197,10 @@
         .hero-subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            opacity: 0.95;
+            opacity: 0.98;
             font-weight: 300;
             letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .scroll-indicator {
@@ -211,21 +230,21 @@
         }
 
         .btn-primary-custom {
-            background: linear-gradient(135deg, var(--accent-bright), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
-            padding: 0.75rem 2rem;
+            padding: 0.85rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(200, 75, 49, 0.3);
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
         }
 
         .btn-primary-custom:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(200, 75, 49, 0.5);
+            box-shadow: 0 6px 25px rgba(233, 30, 99, 0.5);
             color: white;
         }
 
@@ -233,7 +252,7 @@
             background: transparent;
             border: 2px solid white;
             color: white;
-            padding: 0.75rem 2rem;
+            padding: 0.85rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s;
@@ -244,6 +263,7 @@
         .btn-outline-custom:hover {
             background: white;
             color: var(--primary);
+            transform: translateY(-3px);
         }
 
         /* Section Styling */
@@ -252,8 +272,11 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: var(--primary);
+            font-size: 2.75rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             text-align: center;
         }
@@ -267,24 +290,24 @@
 
         /* Verse Section */
         .verse-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             padding: 4rem 0;
         }
 
         .verse-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2.5rem;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .verse-card i {
             font-size: 2.5rem;
-            color: var(--accent-bright);
+            color: var(--accent);
             margin-bottom: 1rem;
         }
 
@@ -297,7 +320,7 @@
         }
 
         .verse-ref {
-            color: var(--accent-bright);
+            color: var(--accent);
             font-weight: 600;
             font-size: 1.1rem;
         }
@@ -309,12 +332,15 @@
             overflow: hidden;
             transition: all 0.4s;
             height: 100%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(30, 136, 229, 0.1);
+            border: 2px solid transparent;
+            cursor: pointer;
         }
 
         .news-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            border-color: var(--secondary);
         }
 
         .news-card img {
@@ -325,7 +351,7 @@
         }
 
         .news-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .news-card-body {
@@ -334,7 +360,7 @@
 
         .news-card-category {
             display: inline-block;
-            background: var(--secondary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 0.35rem 0.85rem;
             border-radius: 20px;
@@ -346,7 +372,7 @@
         .news-card-title {
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--text-primary);
             margin-bottom: 0.75rem;
             line-height: 1.4;
         }
@@ -367,19 +393,19 @@
 
         .news-card-date i {
             margin-right: 0.5rem;
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         /* PKK Section */
         .pkk-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);
         }
 
         .pkk-card {
             background: white;
             border-radius: 20px;
             padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(30, 136, 229, 0.15);
             height: 100%;
         }
 
@@ -392,9 +418,9 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--purple), var(--teal));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            box-shadow: 0 6px 20px rgba(157, 92, 150, 0.4);
+            box-shadow: 0 6px 20px rgba(30, 136, 229, 0.3);
         }
 
         .schedule-card {
@@ -404,12 +430,12 @@
             margin-bottom: 1rem;
             border-left: 4px solid var(--secondary);
             transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(30, 136, 229, 0.08);
         }
 
         .schedule-card:hover {
             transform: translateX(8px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.15);
         }
 
         .schedule-day {
@@ -464,12 +490,12 @@
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 0.2rem rgba(200, 75, 49, 0.25);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(30, 136, 229, 0.25);
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, var(--success), var(--teal));
+            background: linear-gradient(135deg, var(--success), #81C784);
             border: none;
             color: white;
             padding: 0.85rem 3rem;
@@ -477,15 +503,15 @@
             font-weight: 600;
             transition: all 0.3s;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(107, 203, 119, 0.3);
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(107, 203, 119, 0.5);
+            box-shadow: 0 6px 20px rgba(102, 187, 106, 0.5);
         }
 
-        /* Menabur Section */
+        /* Menabur & Highlight Section */
         .highlight-card {
             background: white;
             border-radius: 20px;
@@ -494,12 +520,12 @@
             transition: all 0.4s;
             height: 100%;
             border: 2px solid transparent;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(30, 136, 229, 0.1);
         }
 
         .highlight-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
             border-color: var(--secondary);
         }
 
@@ -512,22 +538,22 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             font-size: 2.2rem;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 20px rgba(30, 136, 229, 0.2);
         }
 
         .icon-menabur {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, var(--secondary), var(--light-pink));
             color: white;
         }
 
         .icon-kasih {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, var(--primary), var(--light-blue));
             color: white;
         }
 
         .icon-event-special {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--accent), #FFE082);
+            color: var(--text-primary);
         }
 
         /* Pengurus Card */
@@ -538,12 +564,14 @@
             text-align: center;
             transition: all 0.4s;
             height: 100%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(30, 136, 229, 0.1);
+            border: 2px solid transparent;
         }
 
         .pengurus-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+            border-color: var(--secondary);
         }
 
         .pengurus-photo-placeholder {
@@ -551,26 +579,26 @@
             height: 150px;
             border-radius: 50%;
             margin: 0 auto 1rem;
-            border: 4px solid var(--secondary);
+            border: 4px solid var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             font-size: 3rem;
             font-weight: 700;
-            box-shadow: 0 6px 20px rgba(200, 75, 49, 0.3);
+            box-shadow: 0 6px 20px rgba(30, 136, 229, 0.3);
         }
 
         .pengurus-name {
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--primary);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
         .pengurus-position {
-            color: var(--secondary);
+            color: var(--primary);
             font-size: 0.95rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -585,7 +613,7 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            background: var(--secondary);
+            background: var(--primary);
             color: white;
             text-align: center;
             line-height: 38px;
@@ -594,38 +622,39 @@
         }
 
         .pengurus-contact a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
+            background: var(--secondary);
+            transform: translateY(-3px) rotate(360deg);
         }
 
         /* Footer */
         .footer {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #1565C0 100%);
             color: white;
             padding: 3rem 0 1.5rem;
         }
 
         .footer h5 {
-            color: var(--accent-bright);
+            color: var(--accent);
             margin-bottom: 1.5rem;
         }
 
         .footer a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
 
         .footer a:hover {
-            color: white;
+            color: var(--accent);
+            padding-left: 5px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.15);
             margin-top: 2rem;
             padding-top: 1.5rem;
             text-align: center;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.8);
         }
 
         .social-links a {
@@ -633,7 +662,7 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             color: white;
             text-align: center;
             line-height: 42px;
@@ -642,9 +671,9 @@
         }
 
         .social-links a:hover {
-            background: var(--accent-bright);
-            color: var(--primary);
-            transform: translateY(-3px);
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-5px) rotate(360deg);
         }
 
         /* Event Page Container */
@@ -656,7 +685,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
             
             .hero-subtitle {
@@ -678,7 +707,7 @@
 
         @media (max-width: 576px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
         }
     </style>
@@ -688,7 +717,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
-                <img src="images/logo-fmk.png" alt="Logo FMK">
+                <img src="images/logo-ipb.png" alt="Logo FMK">
                 FMK SV IPB
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -719,10 +748,10 @@
                             Event
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" data-event="paskah">Paskah</a></li>
-                            <li><a class="dropdown-item" href="#" data-event="kunjungan-kasih">Kasih Peduli</a></li>
-                            <li><a class="dropdown-item" href="#" data-event="kpmb">KPMB</a></li>
-                            <li><a class="dropdown-item" href="#" data-event="natal">Natal</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="paskah">🌸 Paskah</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="kunjungan-kasih">💝 Kasih Peduli</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="kpmb">🎓 KPMB</a></li>
+                            <li><a class="dropdown-item" href="#" data-event="natal">🎄 Natal</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -738,7 +767,7 @@
         <!-- Hero Section with Video Background -->
         <section class="hero" id="home">
             <div class="hero-video-container">
-                <!-- Video Background - Dummy church/worship video -->
+                <!-- Video Background - Ganti dengan video yang sesuai -->
                 <video class="hero-video" autoplay muted loop playsinline>
                     <source src="videos/Salib.mp4" type="video/mp4">
                 </video>
@@ -747,9 +776,9 @@
             <div class="hero-overlay"></div>
             
             <div class="hero-content">
-                <h1 class="hero-title" data-aos="fade-up">Welcome Home</h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">FMK SV IPB 2026 - THE VESSEL OF GOD</p>
-                <div class="d-flex gap-3 justify-content-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
+                <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1200">Bersama Bertumbuh</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">FMK SV IPB 2026 - THE VESSEL OF GOD</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap" data-aos="fade-up" data-aos-delay="500">
                     <a href="#about" class="btn btn-outline-custom">Pelajari Lebih Lanjut</a>
                 </div>
             </div>
@@ -797,103 +826,115 @@
                 <div class="row g-4">
                     <!-- News Card 1 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop" alt="Ibadah Paskah 2025">
-                            <div class="news-card-body">
-                                <span class="news-card-category">Event</span>
-                                <h3 class="news-card-title">Perayaan Paskah 2025 Penuh Sukacita</h3>
-                                <p class="news-card-excerpt">FMK SV IPB merayakan kebangkitan Kristus dengan penuh sukacita melalui ibadah khusus dan kegiatan bersama...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>20 April 2025</span>
+                        <a href="news-detail.html?id=1" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop" alt="Ibadah Paskah 2025">
+                                <div class="news-card-body">
+                                    <span class="news-card-category">Event</span>
+                                    <h3 class="news-card-title">Perayaan Paskah 2025 Penuh Sukacita</h3>
+                                    <p class="news-card-excerpt">FMK SV IPB merayakan kebangkitan Kristus dengan penuh sukacita melalui ibadah khusus dan kegiatan bersama...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>20 April 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- News Card 2 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop" alt="PKK">
-                            <div class="news-card-body">
-                                <span class="news-card-category" style="background: var(--success);">PKK</span>
-                                <h3 class="news-card-title">Pembinaan Kelompok Kecil Semester Baru</h3>
-                                <p class="news-card-excerpt">Kelompok kecil FMK memulai semester baru dengan semangat bertumbuh bersama dalam firman Tuhan...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>15 Maret 2025</span>
+                        <a href="news-detail.html?id=2" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop" alt="PKK">
+                                <div class="news-card-body">
+                                    <span class="news-card-category">PKK</span>
+                                    <h3 class="news-card-title">Pembinaan Kelompok Kecil Semester Baru</h3>
+                                    <p class="news-card-excerpt">Kelompok kecil FMK memulai semester baru dengan semangat bertumbuh bersama dalam firman Tuhan...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>15 Maret 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- News Card 3 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop" alt="Kasih Peduli">
-                            <div class="news-card-body">
-                                <span class="news-card-category" style="background: var(--warm);">Kasih Peduli</span>
-                                <h3 class="news-card-title">Program Kasih Peduli untuk Sesama</h3>
-                                <p class="news-card-excerpt">FMK mengadakan program kasih peduli dengan mengunjungi dan memberkati mahasiswa yang membutuhkan...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>10 Maret 2025</span>
+                        <a href="news-detail.html?id=3" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop" alt="Kasih Peduli">
+                                <div class="news-card-body">
+                                    <span class="news-card-category" style="background: var(--secondary);">Kasih Peduli</span>
+                                    <h3 class="news-card-title">Program Kasih Peduli untuk Sesama</h3>
+                                    <p class="news-card-excerpt">FMK mengadakan program kasih peduli dengan mengunjungi dan memberkati mahasiswa yang membutuhkan...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>10 Maret 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- News Card 4 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600&h=400&fit=crop" alt="Renungan">
-                            <div class="news-card-body">
-                                <span class="news-card-category" style="background: var(--primary);">Renungan</span>
-                                <h3 class="news-card-title">Renungan: Hidup Sebagai Bejana Allah</h3>
-                                <p class="news-card-excerpt">Merenungkan arti menjadi bejana Allah yang dipakai untuk kemuliaan-Nya dalam kehidupan sehari-hari...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>5 Maret 2025</span>
+                        <a href="news-detail.html?id=4" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600&h=400&fit=crop" alt="Renungan">
+                                <div class="news-card-body">
+                                    <span class="news-card-category" style="background: var(--success);">Renungan</span>
+                                    <h3 class="news-card-title">Renungan: Hidup Sebagai Bejana Allah</h3>
+                                    <p class="news-card-excerpt">Merenungkan arti menjadi bejana Allah yang dipakai untuk kemuliaan-Nya dalam kehidupan sehari-hari...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>5 Maret 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- News Card 5 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop" alt="KPMB">
-                            <div class="news-card-body">
-                                <span class="news-card-category" style="background: var(--accent-bright); color: var(--text-primary);">KPMB</span>
-                                <h3 class="news-card-title">Menyambut Mahasiswa Baru dengan Hangat</h3>
-                                <p class="news-card-excerpt">Kebaktian Penyambutan Mahasiswa Baru menjadi momen spesial untuk menyambut keluarga baru FMK...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>1 Februari 2025</span>
+                        <a href="news-detail.html?id=5" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop" alt="KPMB">
+                                <div class="news-card-body">
+                                    <span class="news-card-category" style="background: var(--accent); color: var(--text-primary);">KPMB</span>
+                                    <h3 class="news-card-title">Menyambut Mahasiswa Baru dengan Hangat</h3>
+                                    <p class="news-card-excerpt">Kebaktian Penyambutan Mahasiswa Baru menjadi momen spesial untuk menyambut keluarga baru FMK...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>1 Februari 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- News Card 6 -->
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="news-card">
-                            <img src="https://images.unsplash.com/photo-1482575832494-771f74bf6857?w=600&h=400&fit=crop" alt="Dokumentasi">
-                            <div class="news-card-body">
-                                <span class="news-card-category" style="background: #FF6B6B;">Dokumentasi</span>
-                                <h3 class="news-card-title">Galeri Foto Kegiatan FMK 2025</h3>
-                                <p class="news-card-excerpt">Dokumentasi berbagai kegiatan FMK sepanjang tahun 2025 yang penuh berkat dan sukacita...</p>
-                                <div class="news-card-date">
-                                    <i class="bi bi-calendar3"></i>
-                                    <span>25 Januari 2025</span>
+                        <a href="news-detail.html?id=6" style="text-decoration: none;">
+                            <div class="news-card">
+                                <img src="https://images.unsplash.com/photo-1482575832494-771f74bf6857?w=600&h=400&fit=crop" alt="Dokumentasi">
+                                <div class="news-card-body">
+                                    <span class="news-card-category" style="background: #FF6B6B;">Dokumentasi</span>
+                                    <h3 class="news-card-title">Galeri Foto Kegiatan FMK 2025</h3>
+                                    <p class="news-card-excerpt">Dokumentasi berbagai kegiatan FMK sepanjang tahun 2025 yang penuh berkat dan sukacita...</p>
+                                    <div class="news-card-date">
+                                        <i class="bi bi-calendar3"></i>
+                                        <span>25 Januari 2025</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <a href="news.html" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                    <a href="news.html" class="btn btn-primary-custom rounded-pill px-4 py-2">
                         <i class="bi bi-plus-circle me-2"></i>Lihat Semua Berita
                     </a>
                 </div>
@@ -1022,9 +1063,8 @@
         <!-- Form Doa Section -->
         <section id="form-doa" class="form-doa-section">
             <div class="container">
-                <h2 class="section-title text-white" data-aos="fade-up">Form Permohonan Doa</h2>
-                <p class="section-subtitle text-white" data-aos="fade-up">Kami ingin mendoakan Anda. Bagikan pokok doa Anda kepada kami</p>
-                
+                <h2 class="section-title" data-aos="fade-up" style="color: white; text-shadow: 3px 3px 8px rgba(0,0,0,0.5); -webkit-text-fill-color: white;">Form Permohonan Doa</h2>
+                <p class="section-subtitle" data-aos="fade-up" style="color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.4);">Kami ingin mendoakan Anda. Bagikan pokok doa Anda kepada kami</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
                         <div class="form-container">
@@ -1059,22 +1099,6 @@
                                 <div class="mb-4">
                                     <label for="prayer-request" class="form-label">Pokok Doa <span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="prayer-request" name="entry.2222222222" rows="5" placeholder="Tuliskan pokok doa Anda di sini..." required></textarea>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Apakah Anda ingin didoakan bersama dalam PKK?</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="entry.3333333333" id="pkk-yes" value="Ya" checked>
-                                        <label class="form-check-label" for="pkk-yes">
-                                            Ya, saya ingin didoakan dalam PKK
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="entry.3333333333" id="pkk-no" value="Tidak">
-                                        <label class="form-check-label" for="pkk-no">
-                                            Tidak, cukup tim FMK saja
-                                        </label>
-                                    </div>
                                 </div>
 
                                 <div class="alert alert-info">
@@ -1155,7 +1179,7 @@
 
                                 <p class="text-muted small mt-3">Atau scan QR Code di bawah ini:</p>
                                 <div class="bg-light p-4 rounded mb-3">
-                                    <i class="bi bi-qr-code" style="font-size: 8rem; color: var(--secondary);"></i>
+                                    <i class="bi bi-qr-code" style="font-size: 8rem; color: var(--primary);"></i>
                                     <p class="text-muted small mt-2">QR Code QRIS / E-Wallet</p>
                                 </div>
 
@@ -1172,7 +1196,7 @@
                     <div class="col-12 text-center" data-aos="fade-up">
                         <h4 class="text-primary mb-3">Laporan Transparansi</h4>
                         <p class="text-muted">Kami berkomitmen untuk transparan dalam pengelolaan donasi. Laporan keuangan dapat diakses melalui:</p>
-                        <a href="#" class="btn btn-outline-primary rounded-pill mt-2">
+                        <a href="#" class="btn btn-outline-primary rounded-pill mt-2 px-4">
                             <i class="bi bi-file-earmark-text me-2"></i>Lihat Laporan Keuangan
                         </a>
                     </div>
@@ -1181,7 +1205,7 @@
         </section>
 
         <!-- Pengurus Section -->
-        <section id="pengurus">
+        <section id="pengurus" style="background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Pengurus FMK SV IPB 2026</h2>
                 <p class="section-subtitle" data-aos="fade-up">Tim pelayan yang dipercayakan untuk melayani keluarga FMK</p>
