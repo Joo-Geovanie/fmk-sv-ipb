@@ -761,6 +761,14 @@
             bottom: 30px;
             right: 30px;
             z-index: 999;
+            max-width: 100vw; /* Pastikan ga keluar viewport */
+        }
+
+        /* Pastikan floating button tetap di dalam viewport */
+        @media (max-width: 991px) {
+            .floating-pelayan-container {
+                right: 20px;
+            }
         }
 
         /* Notification Badge */
@@ -1081,24 +1089,26 @@
         /* Responsive */
         @media (max-width: 768px) {
             .floating-pelayan-container {
-                bottom: 80px;  /* Naikkan posisi biar ga ketutup navbar mobile */
+                bottom: 80px;
                 right: 15px;
-                z-index: 1000; /* Pastikan di atas semua elemen */
+                z-index: 1000;
             }
             
             .floating-pelayan-btn {
-                width: 56px;  /* Lebih kecil di mobile */
+                width: 56px;
                 height: 56px;
                 font-size: 1.3rem;
-                box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5); /* Shadow lebih tegas */
+                box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
             }
             
             .floating-tooltip {
-                width: 260px;  /* Lebih kecil biar muat */
+                width: calc(100vw - 30px); /* Menyesuaikan lebar layar */
+                max-width: 280px;
                 font-size: 0.8rem;
                 padding: 0.75rem 0.85rem;
-                bottom: 70px;  /* Sesuaikan posisi */
+                bottom: 70px;
                 right: 0;
+                left: auto; /* Reset left */
             }
             
             .notification-badge {
@@ -1109,9 +1119,8 @@
                 right: -6px;
             }
 
-            /* Hero adjustment untuk mobile */
             .hero-title {
-                font-size: 3rem; /* Lebih kecil */
+                font-size: 3rem;
             }
             
             .hero-subtitle {
@@ -1141,7 +1150,7 @@
             }
 
             .floating-pelayan-container {
-                bottom: 70px;  /* Lebih tinggi lagi untuk hp kecil */
+                bottom: 70px;
                 right: 10px;
             }
             
@@ -1152,9 +1161,32 @@
             }
 
             .floating-tooltip {
-                width: 240px;
+                width: calc(100vw - 20px);
+                max-width: 260px;
                 font-size: 0.75rem;
                 padding: 0.65rem 0.75rem;
+                bottom: 65px;
+                right: 0;
+            }
+            
+            /* Sesuaikan posisi arrow tooltip */
+            .floating-tooltip::after {
+                right: 15px;
+            }
+        }
+
+        /* Untuk layar sangat kecil */
+        @media (max-width: 360px) {
+            .floating-pelayan-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+            
+            .floating-tooltip {
+                width: calc(100vw - 15px);
+                max-width: 240px;
+                font-size: 0.7rem;
             }
         }
     </style>
