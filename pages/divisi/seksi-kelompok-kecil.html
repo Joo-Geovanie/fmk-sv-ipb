@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seksi Kelompok Kecil - FMK SV IPB</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #66BB6A;
+            --secondary: #81C784;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            min-height: 100vh;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.15);
+            border: 3px solid transparent;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 187, 106, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .member-card:hover::after {
+            opacity: 1;
+        }
+
+        .member-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(102, 187, 106, 0.3);
+            border-color: var(--primary);
+        }
+
+        .member-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin: 0 auto 1rem;
+            box-shadow: 0 6px 25px rgba(102, 187, 106, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-card:hover .member-photo {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 35px rgba(102, 187, 106, 0.4);
+        }
+
+        .leader-card {
+            background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(129, 199, 132, 0.1));
+            border: 3px solid var(--primary);
+        }
+
+        .leader-card .member-photo {
+            width: 150px;
+            height: 150px;
+            border-width: 5px;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-role {
+            color: #666;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pkk-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.2rem;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.15);
+        }
+
+        .btn-email { background: #4285F4; color: white; }
+        .btn-whatsapp { background: #25D366; color: white; }
+
+        .header-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 12px 40px rgba(102, 187, 106, 0.4);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(102, 187, 106, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <section class="py-5">
+        <div class="container">
+            <!-- Header -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="header-icon">
+                    <i class="bi bi-people-fill text-white" style="font-size: 3.5rem;"></i>
+                </div>
+                <h1 class="display-4 fw-bold mb-3" style="color: var(--primary);">
+                    Seksi Kelompok Kecil
+                </h1>
+                <h3 class="text-muted">Tim PKK - Pembinaan Kelompok Kecil</h3>
+                <p class="lead text-muted mt-3">Membina dan menguatkan persekutuan dalam kelompok-kelompok kecil</p>
+            </div>
+
+            <!-- Info Card -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="info-card">
+                        <h4 class="mb-3" style="color: var(--primary);"><i class="bi bi-info-circle me-2"></i>Tentang Seksi Kelompok Kecil</h4>
+                        <p class="text-muted">
+                            Seksi Kelompok Kecil bertanggung jawab atas pembinaan dan koordinasi seluruh kelompok kecil (PKK) di FMK. Kami memastikan setiap anggota FMK mendapat pembinaan rohani yang baik melalui kelompok-kelompok kecil yang intim dan suportif.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Koordinator -->
+            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Koordinator</h3>
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-card leader-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Koordinator" class="member-photo">
+                        <h5 class="member-name">Ruth Elisabeth</h5>
+                        <p class="member-role">Koordinator Seksi Kelompok Kecil</p>
+                        <p class="text-muted small mb-3">Teknologi Pangan</p>
+                        <div class="contact-links">
+                            <a href="mailto:ruth@apps.ipb.ac.id" class="contact-btn btn-email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="contact-btn btn-whatsapp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pemimpin Kelompok Kecil -->
+            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Pemimpin Kelompok Kecil</h3>
+            <div class="row g-4">
+                <!-- Leader 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Leader 1" class="member-photo">
+                        <h5 class="member-name">Joshua Matthew</h5>
+                        <p class="member-role">Leader PKK 1</p>
+                        <span class="pkk-badge">8 Anggota</span>
+                        <p class="text-muted small mb-3">Manajemen Agribisnis</p>
+                        <div class="contact-links">
+                            <a href="mailto:joshua@apps.ipb.ac.id" class="contact-btn btn-email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567891" target="_blank" class="contact-btn btn-whatsapp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop" alt="Leader 2" class="member-photo">
+                        <h5 class="member-name">Priscilla Joy</h5>
+                        <p class="member-role">Leader PKK 2</p>
+                        <span class="pkk-badge">7 Anggota</span>
+                        <p class="text-muted small mb-3">Teknologi Industri Pertanian</p>
+                        <div class="contact-links">
+                            <a href="mailto:priscilla@apps.ipb.ac.id" class="contact-btn btn-email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567892" target="_blank" class="contact-btn btn-whatsapp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop" alt="Leader 3" class="member-photo">
+                        <h5 class="member-name">Timothy Luke</h5>
+                        <p class="member-role">Leader PKK 3</p>
+                        <span class="pkk-badge">6 Anggota</span>
+                        <p class="text-muted small mb-3">Teknologi Produksi Ternak</p>
+                        <div class="contact-links">
+                            <a href="mailto:timothy@apps.ipb.ac.id" class="contact-btn btn-email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567893" target="_blank" class="contact-btn btn-whatsapp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="cta-card">
+                        <h4 class="mb-3"><i class="bi bi-heart-fill me-2"></i>Ingin Bergabung dengan PKK?</h4>
+                        <p>Kelompok kecil adalah tempat yang sempurna untuk bertumbuh dalam iman dan membangun persahabatan yang kuat!</p>
+                        <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20bergabung%20dengan%20PKK" target="_blank" class="btn btn-light btn-lg mt-3">
+                            <i class="bi bi-whatsapp me-2"></i>Hubungi Koordinator
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>

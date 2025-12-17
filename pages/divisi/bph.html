@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPH - FMK SV IPB</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E88E5;
+            --secondary: #E91E63;
+            --accent: #FFD93D;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);
+            min-height: 100vh;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.15);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .member-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .member-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(233, 30, 99, 0.25);
+            border-color: var(--secondary);
+        }
+
+        .member-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 30px rgba(30, 136, 229, 0.3);
+            transition: all 0.4s;
+        }
+
+        .member-card:hover .member-photo {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 45px rgba(233, 30, 99, 0.4);
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-position {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.3rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-email {
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(135deg, #E1306C, #F56040);
+            color: white;
+        }
+
+        .header-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 50px rgba(30, 136, 229, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.15);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="py-5">
+        <div class="container">
+            <!-- Header -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="header-icon">
+                    <i class="bi bi-person-badge text-white" style="font-size: 4rem;"></i>
+                </div>
+                <h1 class="display-4 fw-bold mb-3" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    BPH
+                </h1>
+                <h3 class="text-muted">Badan Pengurus Harian</h3>
+                <p class="lead text-muted mt-3">Tim inti yang memimpin dan mengkoordinasi seluruh kegiatan FMK SV IPB</p>
+            </div>
+
+            <!-- Info Card -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="info-card">
+                        <h4 class="text-primary mb-3"><i class="bi bi-info-circle me-2"></i>Tentang BPH</h4>
+                        <p class="text-muted">
+                            Badan Pengurus Harian (BPH) adalah tim inti kepemimpinan FMK yang terdiri dari Ketua Umum, Wakil Ketua, Sekretaris, dan Bendahara. BPH bertanggung jawab atas jalannya organisasi, pengambilan keputusan strategis, dan koordinasi seluruh kegiatan FMK SV IPB.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anggota BPH -->
+            <div class="row g-4">
+                <!-- Ketua Umum -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Ketua" class="member-photo">
+                        <h5 class="member-name">Jonathan Samuel</h5>
+                        <p class="member-position">Ketua Umum</p>
+                        <p class="text-muted small mb-3">Teknologi Industri Pertanian</p>
+                        <div class="contact-links">
+                            <a href="mailto:jonathan@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                            <a href="https://instagram.com/jonathan" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wakil Ketua -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="Wakil" class="member-photo">
+                        <h5 class="member-name">Maria Grace</h5>
+                        <p class="member-position">Wakil Ketua</p>
+                        <p class="text-muted small mb-3">Manajemen Agribisnis</p>
+                        <div class="contact-links">
+                            <a href="mailto:maria@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567891" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                            <a href="https://instagram.com/maria" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sekretaris -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Sekretaris" class="member-photo">
+                        <h5 class="member-name">Debora Angelina</h5>
+                        <p class="member-position">Sekretaris</p>
+                        <p class="text-muted small mb-3">Teknologi Pangan</p>
+                        <div class="contact-links">
+                            <a href="mailto:debora@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567892" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                            <a href="https://instagram.com/debora" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bendahara -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop" alt="Bendahara" class="member-photo">
+                        <h5 class="member-name">Daniel Prasetyo</h5>
+                        <p class="member-position">Bendahara</p>
+                        <p class="text-muted small mb-3">Teknologi Produksi Ternak</p>
+                        <div class="contact-links">
+                            <a href="mailto:daniel@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567893" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                            <a href="https://instagram.com/daniel" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

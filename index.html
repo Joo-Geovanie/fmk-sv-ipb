@@ -556,74 +556,118 @@
             color: var(--text-primary);
         }
 
-        /* Pengurus Card */
-        .pengurus-card {
+        /* Divisi Card Styling */
+        .divisi-card {
             background: white;
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
             box-shadow: 0 4px 20px rgba(30, 136, 229, 0.1);
             border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .pengurus-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+        .divisi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .divisi-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .divisi-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.25);
             border-color: var(--secondary);
         }
 
-        .pengurus-photo-placeholder {
-            width: 150px;
-            height: 150px;
+        .divisi-card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .divisi-icon {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin: 0 auto 1rem;
-            border: 4px solid var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+        }
+
+        .divisi-card:hover .divisi-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+        }
+
+        .divisi-card .text-muted.small {
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.5;
+        }
+
+        .badge-divisi {
+            display: inline-flex;
+            align-items: center;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            font-size: 3rem;
-            font-weight: 700;
-            box-shadow: 0 6px 20px rgba(30, 136, 229, 0.3);
-        }
-
-        .pengurus-name {
-            font-size: 1.15rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .pengurus-position {
-            color: var(--primary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .pengurus-contact {
-            margin-top: 1.5rem;
-        }
-
-        .pengurus-contact a {
-            display: inline-block;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            line-height: 38px;
-            margin: 0 0.25rem;
             transition: all 0.3s;
         }
 
-        .pengurus-contact a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px) rotate(360deg);
+        .divisi-card:hover .badge-divisi {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+        }
+
+        .badge-divisi i {
+            transition: transform 0.3s;
+        }
+
+        .divisi-card:hover .badge-divisi i {
+            transform: translateX(5px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .divisi-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .divisi-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .divisi-card h3 {
+                font-size: 1.2rem;
+            }
         }
 
         /* Footer */
@@ -708,6 +752,355 @@
         @media (max-width: 576px) {
             .hero-title {
                 font-size: 2.8rem;
+            }
+        }
+
+        /* Floating Button Container */
+        .floating-pelayan-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+            animation: pulse-badge 2s infinite;
+            z-index: 2;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 6px 25px rgba(255, 107, 107, 0.8);
+            }
+        }
+
+        /* Floating Button */
+        .floating-pelayan-btn {
+            background: linear-gradient(135deg, #E91E63, #F48FB1);
+            color: white;
+            border: none;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(233, 30, 99, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-pelayan-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .floating-pelayan-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .floating-pelayan-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 12px 40px rgba(233, 30, 99, 0.6);
+        }
+
+        .floating-pelayan-btn:active {
+            transform: scale(0.95);
+        }
+
+        .floating-text {
+            display: none;
+        }
+
+        /* Floating Tooltip */
+        .floating-tooltip {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            width: 320px;
+            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #E91E63;
+        }
+
+        .floating-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .tooltip-content {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .tooltip-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .tooltip-close:hover {
+            background: #f5f5f5;
+            color: #E91E63;
+        }
+
+        /* Pelayan Check Custom */
+        .pelayan-check {
+            background: #f8f9fa;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .pelayan-check:hover {
+            background: #fff;
+            border-color: #E91E63;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
+        }
+
+        .pelayan-check input:checked ~ label {
+            color: #E91E63;
+            font-weight: 600;
+        }
+
+        /* New Checkbox Card Styling */
+        .pelayan-check-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .pelayan-check-card:hover {
+            border-color: #E91E63;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-check-input-custom {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .pelayan-check-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 0;
+            width: 100%;
+        }
+
+        .check-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            color: #999;
+            transition: all 0.3s;
+        }
+
+        .checked-icon {
+            display: none;
+            color: #E91E63;
+        }
+
+        .unchecked-icon {
+            display: block;
+        }
+
+        .form-check-input-custom:checked ~ .pelayan-check-label .checked-icon {
+            display: block;
+        }
+
+        .form-check-input-custom:checked ~ .pelayan-check-label .unchecked-icon {
+            display: none;
+        }
+
+        .form-check-input-custom:checked ~ .pelayan-check-label {
+            color: #E91E63;
+        }
+
+        .form-check-input-custom:checked ~ .pelayan-check-label .check-icon {
+            color: #E91E63;
+            transform: scale(1.1);
+        }
+
+        .pelayan-check-card:has(.form-check-input-custom:checked) {
+            border-color: #E91E63;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05), rgba(244, 143, 177, 0.05));
+            box-shadow: 0 4px 20px rgba(233, 30, 99, 0.2);
+        }
+
+        .check-content {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        /* Komitmen Card Styling */
+        .komitmen-card {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            border: 3px solid #FF9800;
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .komitmen-card:has(input:checked) {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-color: #4CAF50;
+        }
+
+        .form-check-input-custom-komitmen {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .komitmen-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .check-icon-komitmen {
+            font-size: 1.5rem;
+            color: #FF9800;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-icon-komitmen .checked-icon {
+            display: none;
+            color: #4CAF50;
+        }
+
+        .check-icon-komitmen .unchecked-icon {
+            display: block;
+        }
+
+        .form-check-input-custom-komitmen:checked ~ .komitmen-label .check-icon-komitmen .checked-icon {
+            display: block;
+        }
+
+        .form-check-input-custom-komitmen:checked ~ .komitmen-label .check-icon-komitmen .unchecked-icon {
+            display: none;
+        }
+
+        .form-check-input-custom-komitmen:checked ~ .komitmen-label .check-icon-komitmen {
+            color: #4CAF50;
+            transform: scale(1.1);
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            border: none;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #E91E63;
+            box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .floating-pelayan-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-pelayan-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .floating-tooltip {
+                width: 280px;
+                font-size: 0.85rem;
+                padding: 0.85rem 1rem;
+            }
+            
+            .notification-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -1204,107 +1597,102 @@
             </div>
         </section>
 
-        <!-- Pengurus Section -->
+        <!-- Pengurus Section - Improved Version -->
         <section id="pengurus" style="background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Pengurus FMK SV IPB 2026</h2>
                 <p class="section-subtitle" data-aos="fade-up">Tim pelayan yang dipercayakan untuk melayani keluarga FMK</p>
                 
                 <div class="row g-4 mt-3">
-                    <!-- Ketua Umum -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">JD</div>
-                            <h4 class="pengurus-name">John Doe</h4>
-                            <p class="pengurus-position">Ketua Umum</p>
-                            <p class="text-muted small">Memimpin dan mengkoordinasi seluruh kegiatan FMK</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:johndoe@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567890" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/johndoe" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- BPH -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="divisi-card" onclick="loadDivisiPage('bph')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #1E88E5, #64B5F6);">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                            <h3>BPH</h3>
+                            <p class="text-muted mb-3">Badan Pengurus Harian</p>
+                            <p class="text-muted small">Ketua, Wakil, Sekretaris, dan Bendahara yang memimpin organisasi</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Wakil Ketua -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">JS</div>
-                            <h4 class="pengurus-name">Jane Smith</h4>
-                            <p class="pengurus-position">Wakil Ketua</p>
-                            <p class="text-muted small">Mendampingi Ketua Umum dalam menjalankan organisasi</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:janesmith@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567891" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/janesmith" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- Pelayan Khusus -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="divisi-card" onclick="loadDivisiPage('pelayan-khusus')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #E91E63, #F48FB1);">
+                                <i class="bi bi-heart-fill"></i>
+                            </div>
+                            <h3>Pelayan Khusus</h3>
+                            <p class="text-muted mb-3">Tim Pelayanan Khusus</p>
+                            <p class="text-muted small">Musik, pujian, protokoler, dan usher dalam setiap kegiatan rohani</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Sekretaris -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">AB</div>
-                            <h4 class="pengurus-name">Alice Brown</h4>
-                            <p class="pengurus-position">Sekretaris</p>
-                            <p class="text-muted small">Mengelola administrasi dan dokumentasi FMK</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:alicebrown@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567892" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/alicebrown" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- Seksi Kelompok Kecil -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="divisi-card" onclick="loadDivisiPage('seksi-kelompok-kecil')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #66BB6A, #81C784);">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h3>Seksi Kelompok Kecil</h3>
+                            <p class="text-muted mb-3">Tim PKK</p>
+                            <p class="text-muted small">Mengkoordinasi dan membina kelompok-kelompok kecil FMK</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bendahara -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">MJ</div>
-                            <h4 class="pengurus-name">Michael Johnson</h4>
-                            <p class="pengurus-position">Bendahara</p>
-                            <p class="text-muted small">Mengelola keuangan dan laporan finansial FMK</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:michaelj@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567893" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/michaelj" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- Seksi Doa -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="divisi-card" onclick="loadDivisiPage('seksi-doa')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #AB47BC, #BA68C8);">
+                                <i class="bi bi-stars"></i>
+                            </div>
+                            <h3>Seksi Doa</h3>
+                            <p class="text-muted mb-3">Tim Intercessor</p>
+                            <p class="text-muted small">Memimpin dan mengkoordinasi kehidupan doa FMK</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Koordinator PKK -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">SD</div>
-                            <h4 class="pengurus-name">Sarah Davis</h4>
-                            <p class="pengurus-position">Koordinator PKK</p>
-                            <p class="text-muted small">Mengkoordinasi seluruh kelompok kecil FMK</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:sarahd@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567894" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/sarahd" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- Multimedia dan Data -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="divisi-card" onclick="loadDivisiPage('multimedia-data')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #FF7043, #FF8A65);">
+                                <i class="bi bi-camera-fill"></i>
+                            </div>
+                            <h3>Multimedia dan Data</h3>
+                            <p class="text-muted mb-3">Tim Kreatif & IT</p>
+                            <p class="text-muted small">Dokumentasi, desain, dan pengelolaan data FMK</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Koordinator Event -->
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="pengurus-card">
-                            <div class="pengurus-photo-placeholder">DW</div>
-                            <h4 class="pengurus-name">David Wilson</h4>
-                            <p class="pengurus-position">Koordinator Event</p>
-                            <p class="text-muted small">Merencanakan dan melaksanakan event-event FMK</p>
-                            <div class="pengurus-contact">
-                                <a href="mailto:davidw@apps.ipb.ac.id" title="Email"><i class="bi bi-envelope-fill"></i></a>
-                                <a href="https://wa.me/6281234567895" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                                <a href="https://instagram.com/davidw" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <!-- Pelayan Misi Sukabumi -->
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="divisi-card" onclick="loadDivisiPage('misi-sukabumi')">
+                            <div class="divisi-icon" style="background: linear-gradient(135deg, #FFD93D, #FFE082);">
+                                <i class="bi bi-geo-alt-fill" style="color: #333;"></i>
+                            </div>
+                            <h3>Pelayan Misi Sukabumi</h3>
+                            <p class="text-muted mb-3">Tim Misi</p>
+                            <p class="text-muted small">Mengkoordinasi pelayanan misi di Sukabumi</p>
+                            <div class="mt-3">
+                                <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="alert alert-warning mt-5 text-center" data-aos="fade-up">
-                    <i class="bi bi-exclamation-triangle me-2"></i>
-                    <strong>Catatan untuk Admin:</strong> Ganti foto, nama, dan kontak pengurus sesuai data yang sebenarnya. Untuk foto, simpan di folder <code>images/</code> dan ganti <code>&lt;div class="pengurus-photo-placeholder"&gt;</code> dengan <code>&lt;img src="images/nama-foto.jpg" class="pengurus-photo-placeholder" alt="Nama"&gt;</code>
                 </div>
             </div>
         </section>
@@ -1352,6 +1740,276 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-pelayan-container">
+        <!-- Notification Badge -->
+        <div class="notification-badge" id="notificationBadge">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+        
+        <!-- Floating Button -->
+        <button class="floating-pelayan-btn" id="pelayanBtn" onclick="openPelayanModal()">
+            <i class="bi bi-music-note-beamed"></i>
+            <span class="floating-text">Daftar Pelayan</span>
+        </button>
+        
+        <!-- Tooltip Message -->
+        <div class="floating-tooltip" id="floatingTooltip">
+            <div class="tooltip-content">
+                <i class="bi bi-star-fill text-warning me-2"></i>
+                <span><strong>Panggilan Melayani!</strong> Jadilah berkat melalui talenta yang Tuhan percayakan 🎵✨</span>
+            </div>
+            <button class="tooltip-close" onclick="closeTooltip()">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Form Pendaftaran Pelayan -->
+    <div class="modal fade" id="pelayanModal" tabindex="-1" aria-labelledby="pelayanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 20px; border: none;">
+                <div class="modal-header" style="background: linear-gradient(135deg, #E91E63, #F48FB1); color: white; border-radius: 20px 20px 0 0; border: none;">
+                    <div>
+                        <h5 class="modal-title" id="pelayanModalLabel" style="font-weight: 700; font-size: 1.5rem;">
+                            <i class="bi bi-music-note-beamed me-2"></i>Daftar Menjadi Pelayan FMK
+                        </h5>
+                        <p class="mb-0 mt-1" style="font-size: 0.9rem; opacity: 0.95;">Pakailah talenta yang Tuhan percayakan untuk kemuliaan-Nya</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Inspirational Quote -->
+                    <div class="alert alert-light border-0 mb-4" style="background: linear-gradient(135deg, #E3F2FD, #FCE4EC); border-left: 4px solid #E91E63 !important;">
+                        <i class="bi bi-quote text-primary" style="font-size: 1.5rem;"></i>
+                        <p class="mb-1 mt-2" style="font-style: italic; color: #333;">
+                            "Melayani Tuhan dengan talenta adalah kehormatan tertinggi. Setiap nada, setiap kata, setiap langkah adalah persembahan cinta."
+                        </p>
+                        <small class="text-muted">- 1 Petrus 4:10</small>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="pelayan-form" action="https://docs.google.com/forms/d/e/[FORM_ID]/formResponse" method="POST" target="hidden_iframe_pelayan">
+                        <div class="row g-3">
+                            <!-- Nama Lengkap -->
+                            <div class="col-md-6">
+                                <label for="nama" class="form-label fw-semibold">
+                                    <i class="bi bi-person-fill text-primary me-1"></i>Nama Lengkap <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="nama" name="entry.1111111111" placeholder="Nama lengkap Anda" required>
+                            </div>
+
+                            <!-- NIM -->
+                            <div class="col-md-6">
+                                <label for="nim" class="form-label fw-semibold">
+                                    <i class="bi bi-card-text text-primary me-1"></i>NIM <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="nim" name="entry.2222222222" placeholder="Nomor Induk Mahasiswa" required>
+                            </div>
+
+                            <!-- Program Studi -->
+                            <div class="col-md-6">
+                                <label for="prodi" class="form-label fw-semibold">
+                                    <i class="bi bi-mortarboard-fill text-primary me-1"></i>Program Studi <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="prodi" name="entry.3333333333" placeholder="Contoh: Teknologi Produksi Ternak" required>
+                            </div>
+
+                            <!-- Angkatan -->
+                            <div class="col-md-6">
+                                <label for="angkatan" class="form-label fw-semibold">
+                                    <i class="bi bi-calendar-event text-primary me-1"></i>Angkatan <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select" id="angkatan" name="entry.4444444444" required>
+                                    <option value="">Pilih angkatan...</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </select>
+                            </div>
+
+                            <!-- Nomor WhatsApp -->
+                            <div class="col-md-6">
+                                <label for="whatsapp" class="form-label fw-semibold">
+                                    <i class="bi bi-whatsapp text-success me-1"></i>Nomor WhatsApp <span class="text-danger">*</span>
+                                </label>
+                                <input type="tel" class="form-control" id="whatsapp" name="entry.5555555555" placeholder="08xxxxxxxxxx" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold">
+                                    <i class="bi bi-envelope-fill text-primary me-1"></i>Email
+                                </label>
+                                <input type="email" class="form-control" id="email" name="entry.6666666666" placeholder="email@apps.ipb.ac.id">
+                            </div>
+
+                            <!-- Bidang Pelayanan -->
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="bi bi-heart-fill text-danger me-1"></i>Bidang Pelayanan yang Diminati <span class="text-danger">*</span>
+                                </label>
+                                <div class="alert alert-info mb-3" style="background: #E3F2FD; border: none; border-left: 4px solid #1E88E5;">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <small><strong>Klik kotak di samping</strong> untuk memilih bidang pelayanan. Bisa pilih lebih dari satu!</small>
+                                </div>
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="musik" name="entry.7777777777" value="Musik/Band">
+                                            <label class="pelayan-check-label" for="musik">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-music-note-beamed text-primary me-2"></i>
+                                                    <strong>Musik / Band</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="singer" name="entry.7777777777" value="Singer/Vokalis">
+                                            <label class="pelayan-check-label" for="singer">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-mic-fill text-danger me-2"></i>
+                                                    <strong>Singer / Vokalis</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="protokoler" name="entry.7777777777" value="Protokoler/MC">
+                                            <label class="pelayan-check-label" for="protokoler">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-megaphone-fill text-warning me-2"></i>
+                                                    <strong>Protokoler / MC</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="usher" name="entry.7777777777" value="Usher/Penyambut">
+                                            <label class="pelayan-check-label" for="usher">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-hand-thumbs-up-fill text-success me-2"></i>
+                                                    <strong>Usher / Penyambut</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="multimedia" name="entry.7777777777" value="Multimedia/Dokumentasi">
+                                            <label class="pelayan-check-label" for="multimedia">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-camera-fill text-info me-2"></i>
+                                                    <strong>Multimedia / Dokumentasi</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pelayan-check-card">
+                                            <input class="form-check-input-custom" type="checkbox" id="doa" name="entry.7777777777" value="Tim Doa/Intercessor">
+                                            <label class="pelayan-check-label" for="doa">
+                                                <span class="check-icon">
+                                                    <i class="bi bi-square unchecked-icon"></i>
+                                                    <i class="bi bi-check-square-fill checked-icon"></i>
+                                                </span>
+                                                <span class="check-content">
+                                                    <i class="bi bi-stars text-purple me-2"></i>
+                                                    <strong>Tim Doa / Intercessor</strong>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pengalaman -->
+                            <div class="col-12">
+                                <label for="pengalaman" class="form-label fw-semibold">
+                                    <i class="bi bi-award-fill text-warning me-1"></i>Pengalaman Pelayanan
+                                </label>
+                                <textarea class="form-control" id="pengalaman" name="entry.8888888888" rows="3" placeholder="Ceritakan pengalaman pelayanan Anda sebelumnya (jika ada)"></textarea>
+                                <small class="text-muted">Tidak wajib, tapi akan membantu kami mengenal Anda lebih baik</small>
+                            </div>
+
+                            <!-- Motivasi -->
+                            <div class="col-12">
+                                <label for="motivasi" class="form-label fw-semibold">
+                                    <i class="bi bi-chat-heart-fill text-danger me-1"></i>Mengapa Ingin Melayani? <span class="text-danger">*</span>
+                                </label>
+                                <textarea class="form-control" id="motivasi" name="entry.9999999999" rows="3" placeholder="Bagikan hati dan motivasi Anda untuk melayani di FMK..." required></textarea>
+                            </div>
+
+                            <!-- Komitmen -->
+                            <div class="col-12">
+                                <div class="komitmen-card">
+                                    <input class="form-check-input-custom-komitmen" type="checkbox" id="komitmen" required>
+                                    <label class="komitmen-label" for="komitmen">
+                                        <span class="check-icon-komitmen">
+                                            <i class="bi bi-square unchecked-icon"></i>
+                                            <i class="bi bi-check-square-fill checked-icon"></i>
+                                        </span>
+                                        <span class="ms-3">
+                                            <i class="bi bi-hand-index-thumb text-warning me-2"></i>
+                                            <strong>Saya berkomitmen untuk melayani dengan setia dan bertanggung jawab</strong>
+                                            <span class="text-danger ms-1">*</span>
+                                        </span>
+                                    </label>
+                                    <small class="text-muted d-block mt-2 ms-5 ps-2">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Centang kotak di atas untuk melanjutkan
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-lg px-5" style="background: linear-gradient(135deg, #E91E63, #F48FB1); color: white; border-radius: 50px; font-weight: 600; border: none; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);">
+                                <i class="bi bi-send-fill me-2"></i>Kirim Pendaftaran
+                            </button>
+                        </div>
+                    </form>
+
+                    <iframe name="hidden_iframe_pelayan" id="hidden_iframe_pelayan" style="display:none;"></iframe>
+
+                    <!-- Success Message -->
+                    <div id="form-pelayan-success" class="alert alert-success mt-4" style="display:none; border-radius: 15px;">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>Haleluya! 🎉</strong> Pendaftaran Anda telah kami terima. Tim kami akan segera menghubungi Anda. Tuhan memberkati!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -1590,6 +2248,172 @@
 
         // Load random verse when page loads
         window.addEventListener('load', loadRandomVerse);
+
+        // Function to load divisi pages
+        function loadDivisiPage(divisiName) {
+            const mainContent = document.getElementById('main-content');
+            const eventContainer = document.getElementById('event-page-container');
+            
+            // Hide main content, show event container
+            mainContent.style.display = 'none';
+            eventContainer.style.display = 'block';
+            
+            // Show loading
+            eventContainer.innerHTML = `
+                <div class="container py-5 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Memuat halaman divisi...</p>
+                </div>
+            `;
+
+            // Map divisi names to file names
+            const divisiFiles = {
+                'bph': 'bph.html',
+                'pelayan-khusus': 'pelayan-khusus.html',
+                'seksi-kelompok-kecil': 'seksi-kelompok-kecil.html',
+                'seksi-doa': 'seksi-doa.html',
+                'multimedia-data': 'multimedia-data.html',
+                'misi-sukabumi': 'misi-sukabumi.html'
+            };
+
+            const fileName = divisiFiles[divisiName];
+
+            fetch(`pages/divisi/${fileName}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('File not found');
+                    }
+                })
+                .then(html => {
+                    eventContainer.innerHTML = html;
+                    
+                    // Add back button
+                    const backButton = document.createElement('div');
+                    backButton.className = 'container mt-4 mb-4';
+                    backButton.innerHTML = `
+                        <button class="btn btn-outline-primary" onclick="backToHome()">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                        </button>
+                    `;
+                    eventContainer.insertBefore(backButton, eventContainer.firstChild);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Re-initialize AOS if available
+                    if (typeof AOS !== 'undefined') {
+                        AOS.refresh();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading divisi page:', error);
+                    showDivisiNotFound(divisiName);
+                });
+
+            // Close mobile menu if open
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                bsCollapse.hide();
+            }
+        }
+
+        function showDivisiNotFound(divisiName) {
+            const eventContainer = document.getElementById('event-page-container');
+            const titles = {
+                'bph': 'BPH - Badan Pengurus Harian',
+                'pelayan-khusus': 'Pelayan Khusus',
+                'seksi-kelompok-kecil': 'Seksi Kelompok Kecil',
+                'seksi-doa': 'Seksi Doa',
+                'multimedia-data': 'Multimedia dan Data',
+                'misi-sukabumi': 'Pelayan Misi Sukabumi'
+            };
+            
+            eventContainer.innerHTML = `
+                <section class="py-5">
+                    <div class="container text-center">
+                        <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
+                        <h2 class="mt-3">Halaman Divisi Tidak Ditemukan</h2>
+                        <p class="text-muted">Maaf, halaman divisi "${titles[divisiName] || divisiName}" belum tersedia.</p>
+                        <button class="btn btn-primary-custom mt-3" onclick="backToHome()">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Beranda
+                        </button>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Show tooltip on page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const tooltip = document.getElementById('floatingTooltip');
+                if (tooltip && !localStorage.getItem('pelayanTooltipClosed')) {
+                    tooltip.style.display = 'block';
+                    
+                    // Auto hide after 8 seconds
+                    setTimeout(function() {
+                        tooltip.style.display = 'none';
+                    }, 8000);
+                }
+            }, 3000); // Show after 3 seconds
+        });
+
+        // Close tooltip
+        function closeTooltip() {
+            const tooltip = document.getElementById('floatingTooltip');
+            tooltip.style.display = 'none';
+            localStorage.setItem('pelayanTooltipClosed', 'true');
+        }
+
+        // Open modal
+        function openPelayanModal() {
+            const modal = new bootstrap.Modal(document.getElementById('pelayanModal'));
+            modal.show();
+            
+            // Hide tooltip when opening modal
+            document.getElementById('floatingTooltip').style.display = 'none';
+        }
+
+        // Form submission
+        document.getElementById('pelayan-form').addEventListener('submit', function(e) {
+            // Form akan disubmit ke Google Form
+            setTimeout(function() {
+                document.getElementById('form-pelayan-success').style.display = 'block';
+                document.getElementById('pelayan-form').reset();
+                
+                // Hide success message and close modal after 3 seconds
+                setTimeout(function() {
+                    document.getElementById('form-pelayan-success').style.display = 'none';
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('pelayanModal'));
+                    modal.hide();
+                }, 3000);
+            }, 1000);
+        });
+
+        // Animate button on hover
+        const pelayanBtn = document.getElementById('pelayanBtn');
+        pelayanBtn.addEventListener('mouseenter', function() {
+            this.style.animation = 'shake 0.5s';
+        });
+
+        pelayanBtn.addEventListener('animationend', function() {
+            this.style.animation = '';
+        });
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0) rotate(0); }
+                25% { transform: translateX(-5px) rotate(-5deg); }
+                75% { transform: translateX(5px) rotate(5deg); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
