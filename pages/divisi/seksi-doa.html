@@ -19,121 +19,379 @@
             min-height: 100vh;
         }
 
-        .member-card {
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.5s;
-            box-shadow: 0 8px 30px rgba(171, 71, 188, 0.15);
-            border: 3px solid transparent;
-            height: 100%;
+        /* Yin Yang / Balance Design */
+        .prayer-duo {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0;
         }
 
-        .member-card:hover {
-            transform: translateY(-15px) rotateY(5deg);
-            box-shadow: 0 25px 60px rgba(171, 71, 188, 0.3);
+        .duo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            position: relative;
+        }
+
+        /* Connection Bridge - DIPERBAIKI */
+        .connection-bridge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px; /* DIUBAH: Lebar dikurangi dari 200px menjadi 100px */
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            z-index: 0; /* DIUBAH: Z-index diturunkan agar lebih di belakang */
+        }
+
+        .connection-bridge::before,
+        .connection-bridge::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .connection-bridge::before {
+            left: -20px; /* DIUBAH: Disesuaikan karena garis memendek */
+        }
+
+        .connection-bridge::after {
+            right: -20px; /* DIUBAH: Disesuaikan karena garis memendek */
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.4; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.3); }
+        }
+
+        /* Member Card - Orb Style */
+        .member-orb {
+            position: relative;
+            z-index: 2;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .member-orb:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .member-orb:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .orb-card {
+            background: white;
+            width: 280px;
+            border-radius: 30px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(171, 71, 188, 0.25);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .orb-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(171, 71, 188, 0.1),
+                transparent 30%
+            );
+            animation: rotate-gradient 4s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .orb-card:hover {
+            transform: translateY(-25px) scale(1.08);
+            box-shadow: 0 30px 80px rgba(171, 71, 188, 0.4);
             border-color: var(--primary);
         }
 
-        .member-photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            margin: 0 auto 1rem;
-            box-shadow: 0 0 30px rgba(171, 71, 188, 0.4);
-            transition: all 0.4s;
-            filter: grayscale(0%);
-        }
-
-        .member-card:hover .member-photo {
-            transform: scale(1.15);
-            box-shadow: 0 0 50px rgba(171, 71, 188, 0.6);
-            filter: grayscale(0%) brightness(1.1);
-        }
-
-        .leader-card {
+        /* Koordinator Card - Special Gradient */
+        .orb-card.koordinator {
             background: linear-gradient(135deg, rgba(171, 71, 188, 0.1), rgba(186, 104, 200, 0.1));
             border: 3px solid var(--primary);
         }
 
-        .leader-card .member-photo {
-            width: 150px;
-            height: 150px;
-            border-width: 5px;
+        /* Photo with Glow Ring */
+        .photo-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1.5rem;
         }
 
+        .glow-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary),
+                var(--secondary),
+                var(--primary)
+            );
+            animation: rotate-ring 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes rotate-ring {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .member-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 40px rgba(171, 71, 188, 0.4);
+            transition: all 0.4s;
+        }
+
+        .orb-card:hover .member-photo {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(171, 71, 188, 0.6);
+        }
+
+        .orb-card:hover .glow-ring {
+            opacity: 1;
+            animation-duration: 2s;
+        }
+
+        /* Text Styling */
         .member-name {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .member-role {
+            font-size: 0.95rem;
             color: #666;
             font-weight: 600;
-            font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-major {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Buttons */
+        .contact-btns {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-btn {
-            width: 38px;
-            height: 38px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0.2rem;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .contact-btn:hover {
-            transform: translateY(-3px) rotate(15deg);
+            transform: translateY(-5px) scale(1.15) rotate(360deg);
         }
 
-        .btn-email { background: #4285F4; color: white; }
-        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-email { 
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            color: white; 
+        }
+        
+        .btn-whatsapp { 
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white; 
+        }
 
+        /* Header */
         .header-icon {
-            width: 110px;
-            height: 110px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
-            box-shadow: 0 0 40px rgba(171, 71, 188, 0.5);
-            animation: glow 2s ease-in-out infinite;
+            box-shadow: 0 0 80px rgba(171, 71, 188, 0.6);
+            position: relative;
+            animation: sacred-pulse 3s ease-in-out infinite;
         }
 
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 40px rgba(171, 71, 188, 0.5); }
-            50% { box-shadow: 0 0 60px rgba(171, 71, 188, 0.8); }
+        @keyframes sacred-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 80px rgba(171, 71, 188, 0.6);
+            }
+            50% { 
+                box-shadow: 0 0 120px rgba(171, 71, 188, 0.9);
+            }
+        }
+
+        .header-icon::before,
+        .header-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .header-icon::before {
+            animation: ripple 3s ease-out infinite;
+        }
+
+        .header-icon::after {
+            animation: ripple 3s ease-out infinite 1.5s;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         .info-card {
             background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(171, 71, 188, 0.15);
-            margin-bottom: 2rem;
+            border-radius: 30px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 50px rgba(171, 71, 188, 0.15);
+            margin-bottom: 4rem;
+        }
+
+        .schedule-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem 2rem;
+            box-shadow: 0 15px 50px rgba(171, 71, 188, 0.15);
         }
 
         .schedule-card {
-            background: linear-gradient(135deg, rgba(171, 71, 188, 0.1), rgba(186, 104, 200, 0.1));
-            border-radius: 20px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(171, 71, 188, 0.05), rgba(186, 104, 200, 0.05));
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
             border: 2px solid var(--primary);
-            transition: all 0.3s;
+            transition: all 0.4s;
         }
 
         .schedule-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(171, 71, 188, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(171, 71, 188, 0.3);
+            background: linear-gradient(135deg, rgba(171, 71, 188, 0.1), rgba(186, 104, 200, 0.1));
+        }
+
+        .schedule-card i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: icon-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .duo-container {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .connection-bridge {
+                width: 4px;
+                height: 150px;
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+
+            .orb-card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+
+        /* Tambahkan class baru ini untuk tombol gaya pill */
+        .btn-instagram-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+            border: 2px solid white;
+        }
+
+        .btn-instagram-pill i {
+            margin-right: 8px; /* Jarak antara ikon dan teks */
+            font-size: 1.2rem;
+        }
+
+        .btn-instagram-pill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.5);
+            color: white;
         }
     </style>
 </head>
@@ -143,7 +401,7 @@
             <!-- Header -->
             <div class="text-center mb-5" data-aos="fade-up">
                 <div class="header-icon">
-                    <i class="bi bi-stars text-white" style="font-size: 3.5rem;"></i>
+                    <i class="bi bi-stars text-white" style="font-size: 4.5rem;"></i>
                 </div>
                 <h1 class="display-4 fw-bold mb-3" style="color: var(--primary);">
                     Seksi Doa
@@ -154,114 +412,82 @@
 
             <!-- Info Card -->
             <div class="row justify-content-center mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
+                <div class="col-lg-10" data-aos="fade-up">
                     <div class="info-card">
                         <h4 class="mb-3" style="color: var(--primary);"><i class="bi bi-info-circle me-2"></i>Tentang Seksi Doa</h4>
-                        <p class="text-muted">
+                        <p class="text-muted mb-0">
                             Seksi Doa adalah tim intercessor yang dipanggil untuk melayani melalui doa syafaat. Kami percaya bahwa kekuatan doa mengubah segalanya, dan melalui doa bersama, kami menghadirkan kerajaan Allah di tengah-tengah kampus.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Koordinator -->
-            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Koordinator</h3>
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-card leader-card">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" alt="Koordinator" class="member-photo">
-                        <h5 class="member-name">Anna Patricia</h5>
-                        <p class="member-role">Koordinator Seksi Doa</p>
-                        <p class="text-muted small mb-3">Teknologi Produksi Ternak</p>
-                        <div class="contact-links">
-                            <a href="mailto:anna@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567890" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Prayer Duo -->
+            <div class="prayer-duo">
+                <div class="duo-container">
+                    <div class="connection-bridge"></div>
 
-            <!-- Tim Intercessor -->
-            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Tim Intercessor</h3>
-            <div class="row g-4 mb-5">
-                <!-- Intercessor 1 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=300&fit=crop" alt="Intercessor 1" class="member-photo">
-                        <h5 class="member-name">Samuel Elijah</h5>
-                        <p class="member-role">Intercessor</p>
-                        <p class="text-muted small mb-3">Teknologi Pangan</p>
-                        <div class="contact-links">
-                            <a href="mailto:samuel@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567891" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Intercessor 2 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=300&fit=crop" alt="Intercessor 2" class="member-photo">
-                        <h5 class="member-name">Lydia Faith</h5>
-                        <p class="member-role">Intercessor</p>
-                        <p class="text-muted small mb-3">Manajemen Agribisnis</p>
-                        <div class="contact-links">
-                            <a href="mailto:lydia@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567892" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Intercessor 3 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=300&h=300&fit=crop" alt="Intercessor 3" class="member-photo">
-                        <h5 class="member-name">Caleb Andrew</h5>
-                        <p class="member-role">Intercessor</p>
-                        <p class="text-muted small mb-3">Teknologi Industri Pertanian</p>
-                        <div class="contact-links">
-                            <a href="mailto:caleb@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567893" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Jadwal Doa -->
-            <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="fade-up">
-                    <h4 class="text-center mb-4" style="color: var(--primary);"><i class="bi bi-calendar-event me-2"></i>Jadwal Doa Rutin</h4>
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="schedule-card text-center">
-                                <i class="bi bi-sunrise" style="font-size: 3rem; color: var(--primary);"></i>
-                                <h5 class="mt-3 mb-2" style="color: var(--primary);">Doa Pagi</h5>
-                                <p class="mb-1 fw-bold">Kamis, 06.00 WIB</p>
-                                <p class="text-muted small mb-0">Ruang Kelas, Kampus SV IPB</p>
+                    <!-- Koordinator -->
+                    <div class="member-orb" data-aos="fade-right" data-aos-delay="100">
+                        <div class="orb-card koordinator">
+                            <div class="photo-container">
+                                <div class="glow-ring"></div>
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" alt="Koordinator" class="member-photo">
+                            </div>
+                            <h3 class="member-name">Phiello Abraham</h3>
+                            <p class="member-role">Koordinator Seksi Doa</p>
+                            <p class="member-major">Teknologi Rekayasa Komputer</p>
+                            <div class="contact-btns">
+                                <a href="http://instagram.com/phiellavv/" class="btn-instagram-pill" target="_blank">
+                                    <i class="bi bi-instagram"></i> phiellavv
+                                </a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="schedule-card text-center">
-                                <i class="bi bi-moon-stars" style="font-size: 3rem; color: var(--primary);"></i>
-                                <h5 class="mt-3 mb-2" style="color: var(--primary);">Doa Malam</h5>
-                                <p class="mb-1 fw-bold">Rabu, 19.00 WIB</p>
-                                <p class="text-muted small mb-0">Ruang Kelas, Kampus SV IPB</p>
+                    </div>
+
+                    <!-- Anggota -->
+                    <div class="member-orb" data-aos="fade-left" data-aos-delay="200">
+                        <div class="orb-card">
+                            <div class="photo-container">
+                                <div class="glow-ring"></div>
+                                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=300&fit=crop" alt="Anggota" class="member-photo">
+                            </div>
+                            <h3 class="member-name">Yessiva Gebril Tobing</h3>
+                            <p class="member-role">Intercessor</p>
+                            <p class="member-major">Manajemen Industri Jasa Makanan dan Gizi</p>
+                            <div class="contact-btns">
+                                <a href="https://www.instagram.com/yessiva_96/" class="btn-instagram-pill" target="_blank">
+                                    <i class="bi bi-instagram"></i> yessiva_96
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prayer Schedule -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <div class="schedule-section">
+                        <h4 class="text-center mb-4" style="color: var(--primary);">
+                            <i class="bi bi-calendar-event me-2"></i>Jadwal Doa Rutin
+                        </h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="schedule-card">
+                                    <i class="bi bi-sunrise"></i>
+                                    <h5 style="color: var(--primary); font-weight: 700;">Doa Pagi</h5>
+                                    <p class="mb-1 fw-bold">Kamis, 06.00 WIB</p>
+                                    <p class="text-muted small mb-0">Ruang Kelas, Kampus SV IPB</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="schedule-card">
+                                    <i class="bi bi-moon-stars"></i>
+                                    <h5 style="color: var(--primary); font-weight: 700;">Doa Malam</h5>
+                                    <p class="mb-1 fw-bold">Rabu, 19.00 WIB</p>
+                                    <p class="text-muted small mb-0">Ruang Kelas, Kampus SV IPB</p>
+                                </div>
                             </div>
                         </div>
                     </div>

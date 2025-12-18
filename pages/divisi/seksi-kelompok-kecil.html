@@ -6,296 +6,413 @@
     <title>Seksi Kelompok Kecil - FMK SV IPB</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        :root {
-            --primary: #66BB6A;
-            --secondary: #81C784;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .member-card {
-            background: white;
-            border-radius: 25px;
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
             padding: 2rem;
+        }
+
+        .container-custom {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
             text-align: center;
-            transition: all 0.4s;
-            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.15);
-            border: 3px solid transparent;
-            height: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #66BB6A, #81C784, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .bento-item {
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #2a2a2a;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .member-card::after {
+        .bento-item::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(102, 187, 106, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #66BB6A, #81C784);
+            transform: scaleX(0);
+            transition: transform 0.4s;
         }
 
-        .member-card:hover::after {
-            opacity: 1;
+        .bento-item:hover {
+            border-color: #66BB6A;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(102, 187, 106, 0.3);
         }
 
-        .member-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(102, 187, 106, 0.3);
-            border-color: var(--primary);
+        .bento-item:hover::before {
+            transform: scaleX(1);
         }
 
+        /* Grid sizes */
+        .intro-box {
+            grid-column: span 2;
+            grid-row: span 1;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        }
+
+        .member-box {
+            grid-column: span 1;
+            grid-row: span 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .koordinator-box {
+            grid-column: span 2;
+            grid-row: span 1;
+            background: linear-gradient(135deg, #66BB6A, #4CAF50);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cta-box {
+            grid-column: span 4;
+            background: #1a1a1a;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        /* Member Photo */
         .member-photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
             object-fit: cover;
-            border: 4px solid var(--primary);
-            margin: 0 auto 1rem;
-            box-shadow: 0 6px 25px rgba(102, 187, 106, 0.3);
+            border: 3px solid #66BB6A;
+            margin-bottom: 1rem;
             transition: all 0.3s;
-            position: relative;
-            z-index: 1;
         }
 
-        .member-card:hover .member-photo {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 35px rgba(102, 187, 106, 0.4);
+        .bento-item:hover .member-photo {
+            border-radius: 50%;
+            transform: rotate(5deg);
         }
 
-        .leader-card {
-            background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(129, 199, 132, 0.1));
-            border: 3px solid var(--primary);
+        .koordinator-box .member-photo {
+            width: 120px;
+            height: 120px;
+            border-color: white;
+            flex-shrink: 0;
         }
 
-        .leader-card .member-photo {
-            width: 150px;
-            height: 150px;
-            border-width: 5px;
-        }
-
+        /* Text Styles */
         .member-name {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
+            color: #fff;
+            margin-bottom: 0.3rem;
         }
 
         .member-role {
-            color: #666;
+            font-size: 0.85rem;
+            color: #66BB6A;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 0.3rem;
         }
 
-        .pkk-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .member-major {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .koordinator-box .member-role {
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            opacity: 0.95;
+        }
+
+        .koordinator-box .member-major {
+            color: white;
+            opacity: 0.85;
+        }
+
+        /* Instagram Button */
+        .ig-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #E1306C, #C13584);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 0.8rem;
             font-weight: 600;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+
+        .ig-btn:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .koordinator-box .ig-btn {
+            background: white;
+            color: #66BB6A;
+        }
+
+        .koordinator-box .ig-btn:hover {
+            color: #4CAF50;
+        }
+
+        /* Intro Box */
+        .intro-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #66BB6A;
             margin-bottom: 1rem;
         }
 
-        .contact-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+        .intro-box p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* CTA Box */
+        .cta-box h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #66BB6A;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: #999;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 0.2rem;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            font-weight: 600;
+            text-decoration: none;
             transition: all 0.3s;
-            position: relative;
-            z-index: 1;
+            font-size: 1rem;
         }
 
-        .contact-btn:hover {
-            transform: translateY(-3px) scale(1.15);
-        }
-
-        .btn-email { background: #4285F4; color: white; }
-        .btn-whatsapp { background: #25D366; color: white; }
-
-        .header-icon {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            box-shadow: 0 12px 40px rgba(102, 187, 106, 0.4);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .info-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.15);
-            margin-bottom: 2rem;
-        }
-
-        .cta-card {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            padding: 2.5rem;
+        .btn-wa {
+            background: #25D366;
             color: white;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(102, 187, 106, 0.3);
+        }
+
+        .btn-wa:hover {
+            background: #1fb855;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-ig {
+            background: linear-gradient(135deg, #E1306C, #C13584);
+            color: white;
+        }
+
+        .btn-ig:hover {
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 10px 30px rgba(225, 48, 108, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .intro-box,
+            .koordinator-box {
+                grid-column: span 2;
+            }
+
+            .member-box {
+                grid-column: span 1;
+            }
+
+            .cta-box {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .intro-box,
+            .koordinator-box,
+            .member-box,
+            .cta-box {
+                grid-column: span 1;
+            }
+
+            .koordinator-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-cta {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <section class="py-5">
-        <div class="container">
-            <!-- Header -->
-            <div class="text-center mb-5" data-aos="fade-up">
-                <div class="header-icon">
-                    <i class="bi bi-people-fill text-white" style="font-size: 3.5rem;"></i>
-                </div>
-                <h1 class="display-4 fw-bold mb-3" style="color: var(--primary);">
-                    Seksi Kelompok Kecil
-                </h1>
-                <h3 class="text-muted">Tim PKK - Pembinaan Kelompok Kecil</h3>
-                <p class="lead text-muted mt-3">Membina dan menguatkan persekutuan dalam kelompok-kelompok kecil</p>
+    <div class="container-custom">
+        <!-- Header -->
+        <div class="header">
+            <h1>Seksi Kelompok Kecil</h1>
+            <p>Membangun persekutuan yang bermakna</p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="bento-grid">
+            <!-- Intro Box -->
+            <div class="bento-item intro-box">
+                <h3>Tentang Kami</h3>
+                <p>Seksi Kelompok Kecil bertanggung jawab atas pembinaan dan koordinasi seluruh kelompok kecil (PKK) di FMK. Kami memastikan setiap anggota mendapat pembinaan rohani yang baik melalui kelompok-kelompok kecil yang intim dan suportif.</p>
             </div>
 
-            <!-- Info Card -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <div class="info-card">
-                        <h4 class="mb-3" style="color: var(--primary);"><i class="bi bi-info-circle me-2"></i>Tentang Seksi Kelompok Kecil</h4>
-                        <p class="text-muted">
-                            Seksi Kelompok Kecil bertanggung jawab atas pembinaan dan koordinasi seluruh kelompok kecil (PKK) di FMK. Kami memastikan setiap anggota FMK mendapat pembinaan rohani yang baik melalui kelompok-kelompok kecil yang intim dan suportif.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Koordinator -->
-            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Koordinator</h3>
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-card leader-card">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Koordinator" class="member-photo">
-                        <h5 class="member-name">Ruth Elisabeth</h5>
-                        <p class="member-role">Koordinator Seksi Kelompok Kecil</p>
-                        <p class="text-muted small mb-3">Teknologi Pangan</p>
-                        <div class="contact-links">
-                            <a href="mailto:ruth@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567890" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Koordinator Box -->
+            <div class="bento-item koordinator-box">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Divo" class="member-photo">
+                <div style="flex: 1;">
+                    <div class="member-name" style="font-size: 1.5rem;">Divo Manurung</div>
+                    <div class="member-role">Koordinator Seksi Kelompok Kecil</div>
+                    <div class="member-major">Teknologi dan Manajemen Produksi Perkebunan</div>
+                    <a href="https://www.instagram.com/divo.mg/" class="ig-btn" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                        @divo.mg
+                    </a>
                 </div>
             </div>
 
-            <!-- Pemimpin Kelompok Kecil -->
-            <h3 class="text-center mb-4" data-aos="fade-up" style="color: var(--primary);">Pemimpin Kelompok Kecil</h3>
-            <div class="row g-4">
-                <!-- Leader 1 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Leader 1" class="member-photo">
-                        <h5 class="member-name">Joshua Matthew</h5>
-                        <p class="member-role">Leader PKK 1</p>
-                        <span class="pkk-badge">8 Anggota</span>
-                        <p class="text-muted small mb-3">Manajemen Agribisnis</p>
-                        <div class="contact-links">
-                            <a href="mailto:joshua@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567891" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Leader 2 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop" alt="Leader 2" class="member-photo">
-                        <h5 class="member-name">Priscilla Joy</h5>
-                        <p class="member-role">Leader PKK 2</p>
-                        <span class="pkk-badge">7 Anggota</span>
-                        <p class="text-muted small mb-3">Teknologi Industri Pertanian</p>
-                        <div class="contact-links">
-                            <a href="mailto:priscilla@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567892" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Leader 3 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop" alt="Leader 3" class="member-photo">
-                        <h5 class="member-name">Timothy Luke</h5>
-                        <p class="member-role">Leader PKK 3</p>
-                        <span class="pkk-badge">6 Anggota</span>
-                        <p class="text-muted small mb-3">Teknologi Produksi Ternak</p>
-                        <div class="contact-links">
-                            <a href="mailto:timothy@apps.ipb.ac.id" class="contact-btn btn-email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567893" target="_blank" class="contact-btn btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Member 1 -->
+            <div class="bento-item member-box">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Yosep" class="member-photo">
+                <div class="member-name">Yosep Geovanie Aritonang</div>
+                <div class="member-role">Social Media Handler</div>
+                <div class="member-major">Teknologi Rekayasa Komputer</div>
+                <a href="https://www.instagram.com/yoseph.geovanie/" class="ig-btn" target="_blank">
+                    <i class="bi bi-instagram"></i>
+                    @yoseph.geovanie
+                </a>
             </div>
 
-            <!-- CTA -->
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <div class="cta-card">
-                        <h4 class="mb-3"><i class="bi bi-heart-fill me-2"></i>Ingin Bergabung dengan PKK?</h4>
-                        <p>Kelompok kecil adalah tempat yang sempurna untuk bertumbuh dalam iman dan membangun persahabatan yang kuat!</p>
-                        <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20bergabung%20dengan%20PKK" target="_blank" class="btn btn-light btn-lg mt-3">
-                            <i class="bi bi-whatsapp me-2"></i>Hubungi Koordinator
-                        </a>
-                    </div>
+            <!-- Member 2 -->
+            <div class="bento-item member-box">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop" alt="Priscilla" class="member-photo">
+                <div class="member-name">Roulina Olga Margaretha</div>
+                <div class="member-role">Sekretaris Sie KK</div>
+                <div class="member-major">Analisis Kimia</div>
+                <a href="https://www.instagram.com/roulinaom/" class="ig-btn" target="_blank">
+                    <i class="bi bi-instagram"></i>
+                    @roulinaom
+                </a>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="bento-item member-box">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop" alt="Timothy" class="member-photo">
+                <div class="member-name">Siska Agustina Ginting</div>
+                <div class="member-role">Bendahara Sie KK</div>
+                <div class="member-major">TManajemen Agribisnis</div>
+                <a href="https://www.instagram.com/_siskaagustina/" class="ig-btn" target="_blank">
+                    <i class="bi bi-instagram"></i>
+                    @_siskaagustina
+                </a>
+            </div>
+
+            <!-- CTA Box -->
+            <div class="bento-item cta-box">
+                <h3>Ingin Bergabung dengan PKK?</h3>
+                <p>Kelompok kecil adalah tempat yang sempurna untuk bertumbuh dalam iman dan membangun persahabatan yang kuat.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/6287741394802?text=Halo%2C%20saya%20ingin%20bergabung%20dengan%20PKK" class="btn-cta btn-wa" target="_blank">
+                        <i class="bi bi-whatsapp"></i>
+                        Chat Koordinator
+                    </a>
+                    <a href="https://www.instagram.com/siekk.fmksvipb/" class="btn-cta btn-ig" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                        Follow Instagram PKK
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-    </script>
+    </div>
 </body>
 </html>

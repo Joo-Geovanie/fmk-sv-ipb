@@ -10,70 +10,66 @@
     <style>
         :root {
             --primary: #1E88E5;
-            --secondary: #E91E63;
-            --accent: #FFD93D;
+            --secondary: #64B5F6;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 100%);
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
             min-height: 100vh;
         }
 
-        .member-card {
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.15);
-            border: 3px solid transparent;
+        /* Ketua Special Layout - Hexagon */
+        .leader-container {
             position: relative;
+            margin: 3rem auto;
+            max-width: 500px;
+        }
+
+        .hexagon {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 8px;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hexagon:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 25px 60px rgba(30, 136, 229, 0.5);
+        }
+
+        .hexagon-inner {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
 
-        .member-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hexagon-inner img {
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.4s;
-        }
-
-        .member-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .member-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(233, 30, 99, 0.25);
-            border-color: var(--secondary);
-        }
-
-        .member-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
+            height: 100%;
             object-fit: cover;
-            border: 5px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 8px 30px rgba(30, 136, 229, 0.3);
-            transition: all 0.4s;
         }
 
-        .member-card:hover .member-photo {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 45px rgba(233, 30, 99, 0.4);
+        .leader-info {
+            text-align: center;
+            margin-top: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.15);
         }
 
-        .member-name {
-            font-size: 1.5rem;
+        .leader-name {
+            font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -81,32 +77,191 @@
             margin-bottom: 0.5rem;
         }
 
-        .member-position {
+        .leader-title {
+            font-size: 1.2rem;
             color: var(--primary);
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .contact-btn {
+        /* Member Cards - Diagonal Layout */
+        .member-wrapper {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .member-item {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(30, 136, 229, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            transition: width 0.4s;
+        }
+
+        .member-item:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .member-item:hover {
+            transform: translateX(15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(30, 136, 229, 0.25);
+            border-color: var(--secondary);
+        }
+
+        .member-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .member-item:nth-child(even):hover {
+            transform: translateX(-15px) scale(1.03);
+        }
+
+        .member-photo-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .member-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+            transition: all 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-item:hover .member-photo {
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 0 15px 45px rgba(30, 136, 229, 0.4);
+        }
+
+        .photo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+
+        .member-item:hover .photo-glow {
+            opacity: 0.3;
+        }
+
+        .member-details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .member-item:nth-child(even) .member-details {
+            text-align: right;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .member-position {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-major {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Links - FIXED VERSION */
+        .social-btn {
             width: 45px;
             height: 45px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0.3rem;
             transition: all 0.3s;
-            border: 2px solid transparent;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
-        .contact-btn:hover {
-            transform: translateY(-5px) rotate(360deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .member-item:nth-child(even) .social-links {
+            justify-content: flex-end;
         }
 
-        .btn-email {
-            background: linear-gradient(135deg, #4285F4, #34A853);
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: width 0.4s, height 0.4s;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-btn:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .btn-instagram {
+            background: linear-gradient(135deg, #E1306C, #F56040, #FCAF45);
             color: white;
         }
 
@@ -115,35 +270,62 @@
             color: white;
         }
 
-        .btn-instagram {
-            background: linear-gradient(135deg, #E1306C, #F56040);
+        .btn-email {
+            background: linear-gradient(135deg, #4285F4, #34A853);
             color: white;
         }
 
+        /* Header */
+        .page-header {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+
         .header-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border-radius: 25px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 15px 50px rgba(30, 136, 229, 0.4);
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
 
-        .info-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.15);
-            margin-bottom: 2rem;
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .member-item {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+
+            .member-item:nth-child(even) .member-details {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center !important;
+            }
+
+            .member-item:hover {
+                transform: translateY(-10px) scale(1.03) !important;
+            }
         }
     </style>
 </head>
@@ -151,67 +333,51 @@
     <section class="py-5">
         <div class="container">
             <!-- Header -->
-            <div class="text-center mb-5" data-aos="fade-up">
+            <div class="page-header" data-aos="fade-up">
                 <div class="header-icon">
-                    <i class="bi bi-person-badge text-white" style="font-size: 4rem;"></i>
+                    <i class="bi bi-person-badge text-white" style="font-size: 3rem;"></i>
                 </div>
-                <h1 class="display-4 fw-bold mb-3" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    BPH
-                </h1>
+                <h1 class="page-title">BPH</h1>
                 <h3 class="text-muted">Badan Pengurus Harian</h3>
-                <p class="lead text-muted mt-3">Tim inti yang memimpin dan mengkoordinasi seluruh kegiatan FMK SV IPB</p>
+                <p class="lead text-muted mt-3">Tim inti kepemimpinan FMK SV IPB</p>
             </div>
 
-            <!-- Info Card -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <div class="info-card">
-                        <h4 class="text-primary mb-3"><i class="bi bi-info-circle me-2"></i>Tentang BPH</h4>
-                        <p class="text-muted">
-                            Badan Pengurus Harian (BPH) adalah tim inti kepemimpinan FMK yang terdiri dari Ketua Umum, Wakil Ketua, Sekretaris, dan Bendahara. BPH bertanggung jawab atas jalannya organisasi, pengambilan keputusan strategis, dan koordinasi seluruh kegiatan FMK SV IPB.
-                        </p>
+            <!-- Ketua Umum - Special Layout -->
+            <div class="leader-container" data-aos="zoom-in">
+                <div class="hexagon">
+                    <div class="hexagon-inner">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Ketua">
+                    </div>
+                </div>
+                <div class="leader-info">
+                    <h2 class="leader-name">Arkezia Artaloka Pakpahan</h2>
+                    <p class="leader-title">Ketua Umum FMK SV IPB 2026</p>
+                    <p class="text-muted mb-3">Manajemen Industri</p>
+                    <div class="social-links justify-content-center">
+                        <a href="https://wa.me/6281315462893" target="_blank" class="social-btn btn-whatsapp" title="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/arkeziaartaloka/" target="_blank" class="social-btn btn-instagram" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Anggota BPH -->
-            <div class="row g-4">
-                <!-- Ketua Umum -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Ketua" class="member-photo">
-                        <h5 class="member-name">Jonathan Samuel</h5>
-                        <p class="member-position">Ketua Umum</p>
-                        <p class="text-muted small mb-3">Teknologi Industri Pertanian</p>
-                        <div class="contact-links">
-                            <a href="mailto:jonathan@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567890" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                            <a href="https://instagram.com/jonathan" target="_blank" class="contact-btn btn-instagram" title="Instagram">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Other Members -->
+            <div class="member-wrapper">
                 <!-- Wakil Ketua -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="Wakil" class="member-photo">
-                        <h5 class="member-name">Maria Grace</h5>
-                        <p class="member-position">Wakil Ketua</p>
-                        <p class="text-muted small mb-3">Manajemen Agribisnis</p>
-                        <div class="contact-links">
-                            <a href="mailto:maria@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567891" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                            <a href="https://instagram.com/maria" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                <div class="member-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="member-photo-container">
+                        <div class="photo-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Wakil" class="member-photo">
+                    </div>
+                    <div class="member-details">
+                        <h3 class="member-name">Regina Theodora Panjaitan</h3>
+                        <p class="member-position">Wakil Ketua FMK SV IPB 2026</p>
+                        <p class="member-major">Manajemen Industri Jasa Makanan dan Gizi</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/rginatp_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
@@ -219,20 +385,17 @@
                 </div>
 
                 <!-- Sekretaris -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Sekretaris" class="member-photo">
-                        <h5 class="member-name">Debora Angelina</h5>
+                <div class="member-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="member-photo-container">
+                        <div class="photo-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" alt="Sekretaris" class="member-photo">
+                    </div>
+                    <div class="member-details">
+                        <h3 class="member-name">Gracia Naomi Amanda</h3>
                         <p class="member-position">Sekretaris</p>
-                        <p class="text-muted small mb-3">Teknologi Pangan</p>
-                        <div class="contact-links">
-                            <a href="mailto:debora@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567892" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                            <a href="https://instagram.com/debora" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                        <p class="member-major">Akuntansi</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/gracegna_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
@@ -240,20 +403,17 @@
                 </div>
 
                 <!-- Bendahara -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="member-card">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop" alt="Bendahara" class="member-photo">
-                        <h5 class="member-name">Daniel Prasetyo</h5>
+                <div class="member-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="member-photo-container">
+                        <div class="photo-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="Bendahara" class="member-photo">
+                    </div>
+                    <div class="member-details">
+                        <h3 class="member-name">Elshadai Gabriella Nathalie</h3>
                         <p class="member-position">Bendahara</p>
-                        <p class="text-muted small mb-3">Teknologi Produksi Ternak</p>
-                        <div class="contact-links">
-                            <a href="mailto:daniel@apps.ipb.ac.id" class="contact-btn btn-email" title="Email">
-                                <i class="bi bi-envelope-fill"></i>
-                            </a>
-                            <a href="https://wa.me/6281234567893" target="_blank" class="contact-btn btn-whatsapp" title="WhatsApp">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
-                            <a href="https://instagram.com/daniel" target="_blank" class="contact-btn btn-instagram" title="Instagram">
+                        <p class="member-major">Akuntansi</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/elshagns_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
@@ -266,11 +426,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>
