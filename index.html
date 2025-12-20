@@ -2827,21 +2827,28 @@
             const breakingNews = document.getElementById('breakingNews');
             const navbar = document.querySelector('.navbar');
             
-            // Check if user has closed the breaking news
-            const isClosed = localStorage.getItem('breakingNewsClosed');
+            // Check if breaking news has expired (after 25 Jan 2026)
+            const now = new Date().getTime();
+            const hardExpiry = new Date('2026-01-25T23:59:59').getTime();
             
-            if (!isClosed) {
-                // Show breaking news after 2 seconds
-                setTimeout(function() {
-                    breakingNews.classList.add('show');
-                    document.body.classList.add('has-breaking-news');
-                    
-                    // Adjust navbar to sticky with top offset
-                    if (navbar) {
-                        navbar.style.top = '56px';
-                    }
-                }, 2000);
+            // If current date is after 25 Jan 2026, remove breaking news completely
+            if (now > hardExpiry) {
+                if (breakingNews) {
+                    breakingNews.remove(); // Hapus element breaking news
+                }
+                return; // Stop execution
             }
+            
+            // If before expiry date, show breaking news after 2 seconds
+            setTimeout(function() {
+                breakingNews.classList.add('show');
+                document.body.classList.add('has-breaking-news');
+                
+                // Adjust navbar to sticky with top offset
+                if (navbar) {
+                    navbar.style.top = '56px';
+                }
+            }, 2000);
         });
 
         function closeBreakingNews() {
@@ -2856,24 +2863,10 @@
                 navbar.style.top = '0';
             }
             
-            // Save to localStorage so it doesn't show again
-            localStorage.setItem('breakingNewsClosed', 'true');
-            
-            // Optional: Set expiry (e.g., show again after 1 day)
-            const expiry = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours
-            localStorage.setItem('breakingNewsExpiry', expiry);
+            // TIDAK pakai localStorage, jadi setiap refresh akan muncul lagi
+            // User hanya menutup sementara untuk sesi browsing ini saja
         }
 
-        // Optional: Clear localStorage after expiry
-        function checkBreakingNewsExpiry() {
-            const expiry = localStorage.getItem('breakingNewsExpiry');
-            if (expiry && new Date().getTime() > expiry) {
-                localStorage.removeItem('breakingNewsClosed');
-                localStorage.removeItem('breakingNewsExpiry');
-            }
-        }
-
-        checkBreakingNewsExpiry();
     </script>
 </body>
 </html>
