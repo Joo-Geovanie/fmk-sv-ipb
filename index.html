@@ -2593,5 +2593,58 @@
             }, 7000); // 7000 milidetik = 7 detik
         });
     </script>
+
+    <style>
+        body {
+            -webkit-user-select: none; /* Safari/Chrome */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            user-select: none;         /* Standar */
+        }
+        /* Kecuali kalau ada input form, biar orang tetap bisa ngetik */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+    </style>
+
+    <script>
+        // A. Matikan Klik Kanan
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            // alert("Eits, gaboleh klik kanan ya!"); // Nyalakan kalau mau kasih pesan galak
+        });
+
+        // B. Matikan Drag Gambar (Biar gambar gak bisa diseret)
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+
+        // C. Matikan Shortcut Nakal (Inspect, Save, Print, View Source)
+        document.onkeydown = function(e) {
+            // F12 (Dev Tools)
+            if (e.keyCode == 123) return false;
+            
+            // Ctrl+Shift+I (Inspect)
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            
+            // Ctrl+Shift+C (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            
+            // Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+
+            // Ctrl+S (Save Page) - Biar gak bisa di-save as HTML
+            if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
+
+            // Ctrl+P (Print) - Biar gak bisa di-print to PDF
+            if (e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false;
+        };
+    </script>
 </body>
 </html>
