@@ -1278,7 +1278,7 @@
     
     <!-- Breaking News Banner -->
     <div class="breaking-news-container" id="breakingNews">
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
             <div class="breaking-news-wrapper">
                 <div class="breaking-news-label">
                     <i class="bi bi-megaphone-fill"></i>
@@ -1286,12 +1286,12 @@
                 </div>
                 <div class="breaking-news-content">
                     <div class="breaking-news-text">
-                        🎄 NATAL SV IPB 2025 SEGERA HADIR! 🎉 Daftarkan dirimu sekarang untuk merayakan kasih Natal bersama keluarga besar FMK! Tempat terbatas - Jangan sampai ketinggalan! 🎁✨
+                        🎄 NATAL SV IPB 2025 - Daftarkan dirimu sekarang! Tempat terbatas, jangan sampai ketinggalan! 🎉✨
                     </div>
                 </div>
                 <a href="https://natalsvipb.site" target="_blank" class="breaking-news-cta">
                     <i class="bi bi-box-arrow-up-right"></i>
-                    Cek Sekarang
+                    Daftar
                 </a>
                 <button class="breaking-news-close" onclick="closeBreakingNews()">
                     <i class="bi bi-x-lg"></i>
@@ -2661,24 +2661,25 @@
             align-items: center;
             padding: 12px 0;
             overflow: hidden;
+            gap: 10px;
         }
 
         .breaking-news-label {
             background: rgba(255, 255, 255, 0.25);
-            padding: 8px 20px;
+            padding: 8px 15px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 1px;
             border-radius: 0 25px 25px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             white-space: nowrap;
             flex-shrink: 0;
         }
 
         .breaking-news-label i {
-            font-size: 1.1rem;
+            font-size: 1rem;
             animation: pulse-icon 1.5s infinite;
         }
 
@@ -2689,16 +2690,16 @@
 
         .breaking-news-content {
             flex: 1;
-            margin: 0 20px;
             overflow: hidden;
+            min-width: 0;
         }
 
         .breaking-news-text {
             display: inline-block;
             white-space: nowrap;
-            animation: scroll-text 20s linear infinite;
-            padding-right: 100%;
-            font-size: 0.95rem;
+            animation: scroll-text 25s linear infinite;
+            padding-right: 50px;
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
@@ -2707,43 +2708,23 @@
             100% { transform: translateX(-100%); }
         }
 
-        .breaking-news-close {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex-shrink: 0;
-            margin-right: 15px;
-        }
-
-        .breaking-news-close:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: rotate(90deg);
-        }
-
         .breaking-news-cta {
             background: white;
             color: #FF6B6B;
             border: none;
-            padding: 8px 20px;
+            padding: 7px 16px;
             border-radius: 25px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s;
             flex-shrink: 0;
-            margin-right: 15px;
+            margin-right: 8px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            white-space: nowrap;
         }
 
         .breaking-news-cta:hover {
@@ -2753,35 +2734,110 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
         }
 
-        /* Adjust navbar position when breaking news is shown */
-        body.has-breaking-news .navbar {
-            top: 56px;
+        .breaking-news-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            margin-right: 10px;
         }
 
+        .breaking-news-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: rotate(90deg);
+        }
+
+        /* Adjust navbar position when breaking news is shown */
+        body.has-breaking-news .navbar {
+            top: 52px;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .breaking-news-wrapper {
-                padding: 10px 0;
+                padding: 8px 0;
+                gap: 6px;
             }
             
             .breaking-news-label {
-                font-size: 0.75rem;
-                padding: 6px 12px;
+                font-size: 0.65rem;
+                padding: 6px 10px;
+                gap: 4px;
+            }
+            
+            .breaking-news-label i {
+                font-size: 0.85rem;
             }
             
             .breaking-news-text {
-                font-size: 0.85rem;
-                animation: scroll-text 15s linear infinite;
+                font-size: 0.8rem;
+                animation: scroll-text 20s linear infinite;
+                padding-right: 30px;
             }
             
             .breaking-news-cta {
-                padding: 6px 14px;
-                font-size: 0.75rem;
+                padding: 5px 12px;
+                font-size: 0.7rem;
+                gap: 3px;
+                margin-right: 5px;
+            }
+            
+            .breaking-news-cta i {
+                font-size: 0.7rem;
             }
             
             .breaking-news-close {
-                width: 28px;
-                height: 28px;
-                margin-right: 10px;
+                width: 26px;
+                height: 26px;
+                margin-right: 8px;
+            }
+            
+            .breaking-news-close i {
+                font-size: 0.85rem;
+            }
+            
+            body.has-breaking-news .navbar {
+                top: 44px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .breaking-news-wrapper {
+                padding: 7px 0;
+                gap: 5px;
+            }
+            
+            .breaking-news-label {
+                font-size: 0.6rem;
+                padding: 5px 8px;
+            }
+            
+            .breaking-news-text {
+                font-size: 0.75rem;
+                animation: scroll-text 18s linear infinite;
+            }
+            
+            .breaking-news-cta {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+            }
+            
+            .breaking-news-close {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+            
+            body.has-breaking-news .navbar {
+                top: 40px;
             }
         }
     </style>
