@@ -127,6 +127,9 @@
             box-shadow: 0 2px 15px rgba(30, 136, 229, 0.1);
             padding: 1rem 0;
             transition: all 0.3s;
+            position: sticky; /* ubah dari fixed jadi sticky */
+            top: 0;
+            z-index: 1040;
         }
 
         .navbar.scrolled {
@@ -1224,6 +1227,7 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
@@ -1261,7 +1265,7 @@
                             <li><a class="dropdown-item" href="#" data-event="paskah">Paskah</a></li>
                             <li><a class="dropdown-item" href="#" data-event="kunjungan-kasih">Kasih Peduli</a></li>
                             <li><a class="dropdown-item" href="#" data-event="kpmb">KPMB</a></li>
-                            <li><a class="dropdown-item" href="#" data-event="natal">Natal</a></li>
+                            <li><a class="dropdown-item" href="https://natalsvipb.site" target="_blank">Natal</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -1271,6 +1275,30 @@
             </div>
         </div>
     </nav>
+    
+    <!-- Breaking News Banner -->
+    <div class="breaking-news-container" id="breakingNews">
+        <div class="container-fluid">
+            <div class="breaking-news-wrapper">
+                <div class="breaking-news-label">
+                    <i class="bi bi-megaphone-fill"></i>
+                    HOT NEWS
+                </div>
+                <div class="breaking-news-content">
+                    <div class="breaking-news-text">
+                        🎄 NATAL SV IPB 2025 SEGERA HADIR! 🎉 Daftarkan dirimu sekarang untuk merayakan kasih Natal bersama keluarga besar FMK! Tempat terbatas - Jangan sampai ketinggalan! 🎁✨
+                    </div>
+                </div>
+                <a href="https://natalsvipb.site" target="_blank" class="breaking-news-cta">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    Cek Sekarang
+                </a>
+                <button class="breaking-news-close" onclick="closeBreakingNews()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div id="main-content">
         <section class="hero" id="home">
@@ -2608,6 +2636,154 @@
             -ms-user-select: text;
             user-select: text;
         }
+
+        /* Breaking News Banner */
+        .breaking-news-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .breaking-news-container.show {
+            transform: translateY(0);
+        }
+
+        .breaking-news-wrapper {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            overflow: hidden;
+        }
+
+        .breaking-news-label {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 8px 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-radius: 0 25px 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .breaking-news-label i {
+            font-size: 1.1rem;
+            animation: pulse-icon 1.5s infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .breaking-news-content {
+            flex: 1;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+
+        .breaking-news-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll-text 20s linear infinite;
+            padding-right: 100%;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @keyframes scroll-text {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .breaking-news-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .breaking-news-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: rotate(90deg);
+        }
+
+        .breaking-news-cta {
+            background: white;
+            color: #FF6B6B;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            margin-right: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .breaking-news-cta:hover {
+            background: #FFF3E0;
+            color: #FF6B6B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Adjust navbar position when breaking news is shown */
+        body.has-breaking-news .navbar {
+            top: 56px;
+        }
+
+        @media (max-width: 768px) {
+            .breaking-news-wrapper {
+                padding: 10px 0;
+            }
+            
+            .breaking-news-label {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+            
+            .breaking-news-text {
+                font-size: 0.85rem;
+                animation: scroll-text 15s linear infinite;
+            }
+            
+            .breaking-news-cta {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+            
+            .breaking-news-close {
+                width: 28px;
+                height: 28px;
+                margin-right: 10px;
+            }
+        }
     </style>
 
     <script>
@@ -2645,6 +2821,59 @@
             // Ctrl+P (Print) - Biar gak bisa di-print to PDF
             if (e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false;
         };
+
+        // Breaking News Management
+        document.addEventListener('DOMContentLoaded', function() {
+            const breakingNews = document.getElementById('breakingNews');
+            const navbar = document.querySelector('.navbar');
+            
+            // Check if user has closed the breaking news
+            const isClosed = localStorage.getItem('breakingNewsClosed');
+            
+            if (!isClosed) {
+                // Show breaking news after 2 seconds
+                setTimeout(function() {
+                    breakingNews.classList.add('show');
+                    document.body.classList.add('has-breaking-news');
+                    
+                    // Adjust navbar to sticky with top offset
+                    if (navbar) {
+                        navbar.style.top = '56px';
+                    }
+                }, 2000);
+            }
+        });
+
+        function closeBreakingNews() {
+            const breakingNews = document.getElementById('breakingNews');
+            const navbar = document.querySelector('.navbar');
+            
+            breakingNews.classList.remove('show');
+            document.body.classList.remove('has-breaking-news');
+            
+            // Reset navbar position
+            if (navbar) {
+                navbar.style.top = '0';
+            }
+            
+            // Save to localStorage so it doesn't show again
+            localStorage.setItem('breakingNewsClosed', 'true');
+            
+            // Optional: Set expiry (e.g., show again after 1 day)
+            const expiry = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours
+            localStorage.setItem('breakingNewsExpiry', expiry);
+        }
+
+        // Optional: Clear localStorage after expiry
+        function checkBreakingNewsExpiry() {
+            const expiry = localStorage.getItem('breakingNewsExpiry');
+            if (expiry && new Date().getTime() > expiry) {
+                localStorage.removeItem('breakingNewsClosed');
+                localStorage.removeItem('breakingNewsExpiry');
+            }
+        }
+
+        checkBreakingNewsExpiry();
     </script>
 </body>
 </html>
