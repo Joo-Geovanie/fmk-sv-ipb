@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BPH - FMK SV IPB</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #1E88E5;
@@ -17,9 +19,44 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Ketua Special Layout - Hexagon */
+        /* --- Header Section --- */
+        .page-header {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .header-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 15px 50px rgba(30, 136, 229, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Layout Ketua (Hexagon) --- */
         .leader-container {
             position: relative;
             margin: 3rem auto;
@@ -84,7 +121,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Member Cards - Diagonal Layout */
+        /* --- Layout Anggota (Zig-zag Card) --- */
         .member-wrapper {
             position: relative;
             padding: 2rem 0;
@@ -205,20 +242,11 @@
             margin-bottom: 1rem;
         }
 
-        /* Social Links - FIXED VERSION */
-        .social-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+        /* --- Social Buttons (FIXED & FORCED COLORS) --- */
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .member-item:nth-child(even) .social-links {
@@ -232,99 +260,61 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
             position: relative;
             overflow: hidden;
+            
+            /* Kunci Perbaikan: Warna dasar gelap supaya kalau gradient gagal, tombol tetap kelihatan */
+            background-color: #333; 
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: white !important; /* Memaksa ikon jadi putih */
         }
 
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transition: width 0.4s, height 0.4s;
-            transform: translate(-50%, -50%);
+        /* Memaksa Gradient Muncul dengan !important */
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
         }
 
-        .social-btn:hover::before {
-            width: 100px;
-            height: 100px;
+        .btn-whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E) !important;
         }
 
         .social-btn:hover {
             transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            color: white !important;
         }
 
-        .btn-instagram {
-            background: linear-gradient(135deg, #E1306C, #F56040, #FCAF45);
-            color: white;
+        .social-btn i {
+            font-size: 1.4rem;
+            line-height: 0; /* Mencegah ikon bergeser */
         }
 
-        .btn-whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-        }
-
-        .btn-email {
-            background: linear-gradient(135deg, #4285F4, #34A853);
-            color: white;
-        }
-
-        /* Header */
-        .page-header {
-            text-align: center;
-            padding: 3rem 0;
-            position: relative;
-        }
-
-        .header-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 15px 50px rgba(30, 136, 229, 0.4);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .page-title {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
+        /* --- Responsive (Mobile) --- */
         @media (max-width: 768px) {
-            .member-item {
+            .member-item, .member-item:nth-child(even) {
                 flex-direction: column !important;
+                text-align: center !important;
+                gap: 1.5rem;
+            }
+
+            .member-details, .member-item:nth-child(even) .member-details {
                 text-align: center !important;
             }
 
-            .member-item:nth-child(even) .member-details {
-                text-align: center;
-            }
-
-            .social-links {
+            .social-links, .member-item:nth-child(even) .social-links {
                 justify-content: center !important;
             }
 
-            .member-item:hover {
+            .member-item:hover, .member-item:nth-child(even):hover {
                 transform: translateY(-10px) scale(1.03) !important;
+            }
+
+            .hexagon {
+                width: 200px;
+                height: 200px;
             }
         }
     </style>
@@ -332,7 +322,6 @@
 <body>
     <section class="py-5">
         <div class="container">
-            <!-- Header -->
             <div class="page-header" data-aos="fade-up">
                 <div class="header-icon">
                     <i class="bi bi-person-badge text-white" style="font-size: 3rem;"></i>
@@ -342,83 +331,81 @@
                 <p class="lead text-muted mt-3">Tim inti kepemimpinan FMK SV IPB</p>
             </div>
 
-            <!-- Ketua Umum - Special Layout -->
             <div class="leader-container" data-aos="zoom-in">
                 <div class="hexagon">
                     <div class="hexagon-inner">
-                        <img src="/images/divisi/bph/Arkezia-Artaloka-Pakpahan.jpg" alt="Arkezia-Artaloka-Pakpahan">
+                        <img src="/images/divisi/bph/Arkezia-Artaloka-Pakpahan.jpg" alt="Arkezia Artaloka Pakpahan" onerror="this.src='https://placehold.co/400x400?text=Foto+Ketua'">
                     </div>
                 </div>
                 <div class="leader-info">
                     <h2 class="leader-name">Arkezia Artaloka Pakpahan</h2>
                     <p class="leader-title">Ketua Umum FMK SV IPB 2026</p>
                     <p class="text-muted mb-3">Manajemen Industri</p>
+                    
                     <div class="social-links justify-content-center">
-                        <a href="https://wa.me/6281315462893" target="_blank" class="social-btn btn-whatsapp" title="WhatsApp">
+                        <a href="https://wa.me/6281315462893" target="_blank" class="social-btn btn-whatsapp" title="Hubungi WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
-                        <a href="https://www.instagram.com/arkeziaartaloka/" target="_blank" class="social-btn btn-instagram" title="Instagram">
+                        <a href="https://www.instagram.com/arkeziaartaloka/" target="_blank" class="social-btn btn-instagram" title="Kunjungi Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Other Members -->
             <div class="member-wrapper">
-                <!-- Wakil Ketua -->
+                
                 <div class="member-item" data-aos="fade-right" data-aos-delay="100">
                     <div class="member-photo-container">
                         <div class="photo-glow"></div>
-                        <img src="/images/divisi/bph/Regina-Theodora-Panjaitan.jpg" alt="Regina-Theodora-Panjaitan" class="member-photo">
+                        <img src="/images/divisi/bph/Regina-Theodora-Panjaitan.jpg" alt="Regina Theodora Panjaitan" class="member-photo" onerror="this.src='https://placehold.co/400x400?text=Foto'">
                     </div>
                     <div class="member-details">
                         <h3 class="member-name">Regina Theodora Panjaitan</h3>
                         <p class="member-position">Wakil Ketua FMK SV IPB 2026</p>
                         <p class="member-major">Manajemen Industri Jasa Makanan dan Gizi</p>
                         <div class="social-links">
-                            <a href="https://www.instagram.com/rginatp_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
+                            <a href="https://www.instagram.com/rginatp_/" target="_blank" class="social-btn btn-instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sekretaris -->
                 <div class="member-item" data-aos="fade-left" data-aos-delay="200">
                     <div class="member-photo-container">
                         <div class="photo-glow"></div>
-                        <img src="/images/divisi/bph/Gracia-Naomi-Amanda.jpg" alt="Gracia-Naomi-Amanda" class="member-photo">
+                        <img src="/images/divisi/bph/Gracia-Naomi-Amanda.jpg" alt="Gracia Naomi Amanda" class="member-photo" onerror="this.src='https://placehold.co/400x400?text=Foto'">
                     </div>
                     <div class="member-details">
                         <h3 class="member-name">Gracia Naomi Amanda</h3>
                         <p class="member-position">Sekretaris</p>
                         <p class="member-major">Akuntansi</p>
                         <div class="social-links">
-                            <a href="https://www.instagram.com/gracegna_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
+                            <a href="https://www.instagram.com/gracegna_/" target="_blank" class="social-btn btn-instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bendahara -->
                 <div class="member-item" data-aos="fade-right" data-aos-delay="300">
                     <div class="member-photo-container">
                         <div class="photo-glow"></div>
-                        <img src="/images/divisi/bph/Elshadai-Gabriella-Nathalie.jpg" alt="Elshadai-Gabriella-Nathalie" class="member-photo">
+                        <img src="/images/divisi/bph/Elshadai-Gabriella-Nathalie.jpg" alt="Elshadai Gabriella Nathalie" class="member-photo" onerror="this.src='https://placehold.co/400x400?text=Foto'">
                     </div>
                     <div class="member-details">
                         <h3 class="member-name">Elshadai Gabriella Nathalie</h3>
                         <p class="member-position">Bendahara</p>
                         <p class="member-major">Akuntansi</p>
                         <div class="social-links">
-                            <a href="https://www.instagram.com/elshagns_/" target="_blank" class="social-btn btn-instagram" title="Instagram">
+                            <a href="https://www.instagram.com/elshagns_/" target="_blank" class="social-btn btn-instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -426,7 +413,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
     </script>
 </body>
 </html>
