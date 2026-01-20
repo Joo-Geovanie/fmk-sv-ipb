@@ -1236,6 +1236,192 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* Responsive untuk Section Ibadah */
+        @media (max-width: 991px) {
+            .schedule-card {
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Title Badge Kampus */
+            .d-inline-block.px-4.py-2.rounded-pill {
+                font-size: 0.9rem !important;
+                padding: 8px 20px !important;
+            }
+            
+            .d-inline-block.px-4.py-2.rounded-pill strong {
+                font-size: 1rem !important;
+            }
+            
+            /* Schedule Card Mobile */
+            .schedule-card {
+                padding: 1rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .schedule-day {
+                font-size: 0.95rem;
+            }
+            
+            .schedule-time, 
+            .schedule-location {
+                font-size: 0.85rem;
+            }
+            
+            /* Alert Info */
+            .alert.alert-info h6 {
+                font-size: 0.95rem;
+            }
+            
+            .alert.alert-info p.small {
+                font-size: 0.8rem;
+            }
+            
+            /* CTA Card */
+            .card-body h4 {
+                font-size: 1.25rem;
+            }
+            
+            .card-body p.text-muted {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Section Title & Subtitle */
+            #ibadah .section-title {
+                font-size: 1.75rem;
+            }
+            
+            #ibadah .section-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            /* Badge Kampus - Lebih Kecil */
+            .d-inline-block.px-4.py-2.rounded-pill {
+                font-size: 0.8rem !important;
+                padding: 6px 16px !important;
+            }
+            
+            .d-inline-block.px-4.py-2.rounded-pill strong {
+                font-size: 0.9rem !important;
+            }
+            
+            .d-inline-block.px-4.py-2.rounded-pill i {
+                font-size: 0.85rem;
+            }
+            
+            /* Schedule Card - Ultra Compact */
+            .schedule-card {
+                padding: 0.875rem;
+                margin-bottom: 0.65rem;
+                border-radius: 10px;
+            }
+            
+            .schedule-day {
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .schedule-day i {
+                font-size: 0.9rem;
+            }
+            
+            .schedule-time, 
+            .schedule-location {
+                font-size: 0.8rem;
+            }
+            
+            .schedule-time i,
+            .schedule-location i {
+                font-size: 0.75rem;
+            }
+            
+            /* Alert Info - Compact */
+            .alert.alert-info {
+                padding: 0.75rem;
+            }
+            
+            .alert.alert-info i.bi-info-circle-fill {
+                font-size: 1.2rem !important;
+            }
+            
+            .alert.alert-info h6 {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .alert.alert-info p.small {
+                font-size: 0.75rem;
+                line-height: 1.4;
+            }
+            
+            /* CTA Card */
+            .card-body {
+                padding: 1.25rem !important;
+            }
+            
+            .card-body i.bi-people-fill {
+                font-size: 2.25rem !important;
+            }
+            
+            .card-body h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .card-body p.text-muted {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 1rem !important;
+            }
+            
+            .btn-primary-custom {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
+            
+            /* Footer Note */
+            p.text-muted.small.mt-4 {
+                font-size: 0.75rem;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            /* Extra Small Mobile */
+            #ibadah .section-title {
+                font-size: 1.5rem;
+            }
+            
+            #ibadah .section-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .d-inline-block.px-4.py-2.rounded-pill {
+                padding: 5px 12px !important;
+            }
+            
+            .schedule-card {
+                padding: 0.75rem;
+            }
+            
+            .schedule-day {
+                font-size: 0.85rem;
+            }
+            
+            .schedule-time, 
+            .schedule-location {
+                font-size: 0.75rem;
+            }
+            
+            .btn-primary-custom {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1261,10 +1447,10 @@
                         <a class="nav-link" href="#media">Media Berita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#pkk">PKK</a>
+                        <a class="nav-link" href="#ibadah">Ibadah</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#form-doa">Form Doa</a>
+                        <a class="nav-link" href="#form-doa">Stay With You</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#menabur">Menabur</a>
@@ -1497,126 +1683,173 @@
             </div>
         </section>
 
-        <section id="pkk" class="pkk-section">
+        <section id="ibadah" class="pkk-section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Pembinaan Kelompok Kecil (PKK)</h2>
-                <p class="section-subtitle" data-aos="fade-up">Kelompok Kecil Kristen untuk Bertumbuh Bersama</p>
+                <h2 class="section-title" data-aos="fade-up">Jadwal Ibadah FMK SV IPB</h2>
+                <p class="section-subtitle" data-aos="fade-up">Bersekutu dan Bertumbuh Bersama dalam Firman Tuhan</p>
                 
-                <div class="row align-items-center g-4">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="pkk-card">
-                            <h3 class="text-primary mb-3">Apa itu PKK?</h3>
-                            <p class="text-muted">PKK (Pembinaan Kelompok Kecil) adalah <strong>kelompok kecil kristen</strong> dalam <strong>persekutuan mahasiswa kristen</strong> yang bertemu secara rutin untuk belajar firman Tuhan, saling mendoakan, dan menguatkan iman satu sama lain. Setiap kelompok terdiri dari 3-4 mahasiswa dengan seorang mentor yang akan membimbing.</p>
-                            
-                            <h4 class="text-primary mt-4 mb-3">Kegiatan PKK:</h4>
-                            <ul class="text-muted">
-                                <li class="mb-2">Sharing firman Tuhan dan penerapannya</li>
-                                <li class="mb-2">Saling mendoakan pokok doa</li>
-                                <li class="mb-2">Membangun persahabatan rohani</li>
-                                <li class="mb-2">Kegiatan fun bersama (outbound, gathering, dll)</li>
-                            </ul>
-
-                            <div class="alert alert-info mt-4">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <strong>Catatan:</strong> PKK bersifat terbuka untuk semua mahasiswa Kristen. Anda bisa langsung bergabung dengan menghubungi kontak di bawah!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="pkk-card">
-                            <div class="pkk-icon mx-auto mb-3">
-                                <i class="bi bi-people-fill"></i>
-                            </div>
-                            <h3 class="mb-4 text-center">Jadwal PKK</h3>
-                            
-                            <div class="schedule-card">
-                                <div class="schedule-day">
-                                    <i class="bi bi-calendar-check"></i>
-                                    Rabu - Ibadah PKK
-                                </div>
-                                <div class="schedule-time">
-                                    <i class="bi bi-clock me-1"></i>19.00 WIB
-                                </div>
-                                <div class="schedule-location">
-                                    <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Area Kampus SV IPB
-                                </div>
-                            </div>
-
-                            <p class="text-muted mt-3 small text-center">Jadwal per kelompok dapat disesuaikan dengan kesepakatan anggota</p>
-
-                            <a href="https://wa.me/6287741394802?text=Halo%20FMK,%20saya%20ingin%20bergabung%20dengan%20PKK" target="_blank" class="btn btn-primary-custom mt-3 w-100">
-                                <i class="bi bi-whatsapp me-2"></i>Hubungi Kami untuk Bergabung
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="col-12" data-aos="fade-up">
-                        <div class="pkk-card">
-                            <h3 class="text-primary mb-4 text-center">Program Ibadah Rutin FMK</h3>
-                            
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <div class="schedule-card">
-                                        <div class="schedule-day">
-                                            <i class="bi bi-calendar-event"></i>
-                                            Persekutuan Jumat Malam
-                                        </div>
-                                        <div class="schedule-time">
-                                            <i class="bi bi-clock me-1"></i>Jumat, 19.00 WIB
-                                        </div>
-                                        <div class="schedule-location">
-                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="schedule-card">
-                                        <div class="schedule-day">
-                                            <i class="bi bi-calendar-event"></i>
-                                            Doa Pagi
-                                        </div>
-                                        <div class="schedule-time">
-                                            <i class="bi bi-clock me-1"></i>Kamis, 06.00 WIB
-                                        </div>
-                                        <div class="schedule-location">
-                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="schedule-card">
-                                        <div class="schedule-day">
-                                            <i class="bi bi-calendar-event"></i>
-                                            Doa Malam
-                                        </div>
-                                        <div class="schedule-time">
-                                            <i class="bi bi-clock me-1"></i>Rabu, 19.00 WIB
-                                        </div>
-                                        <div class="schedule-location">
-                                            <i class="bi bi-geo-alt me-1"></i>Ruang Kelas, Kampus SV IPB
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p class="text-muted small mt-4 text-center">
-                                <i class="bi bi-exclamation-circle me-1"></i>
-                                Jadwal dan lokasi bersifat tentatif, dapat berubah sewaktu-waktu
+                <div class="alert alert-info mb-5 mx-auto" style="max-width: 900px; border-left: 4px solid var(--primary);" data-aos="fade-up">
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-info-circle-fill text-primary me-3" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <h6 class="mb-2"><strong>Informasi Penting!</strong></h6>
+                            <p class="mb-0 small">
+                                Setiap ibadah <strong>tidak akan berada di minggu yang sama</strong>. Untuk info detail jadwal ibadah setiap minggunya, silakan follow media sosial FMK di 
+                                <a href="https://www.instagram.com/fmk.sv.ipb/" target="_blank" class="text-primary fw-bold"><i class="bi bi-instagram"></i> @fmk.sv.ipb</a> atau melalui grup WhatsApp FMK SV IPB.
                             </p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Kampus Bogor -->
+                <div class="row g-4 mb-5">
+                    <div class="col-12" data-aos="fade-up">
+                        <div class="text-center mb-4">
+                            <div class="d-inline-block px-4 py-2 rounded-pill" style="background: linear-gradient(135deg, var(--primary), var(--light-blue)); color: white;">
+                                <i class="bi bi-geo-alt-fill me-2"></i>
+                                <strong style="font-size: 1.1rem;">KAMPUS BOGOR</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-primary"></i>
+                                        Persekutuan Jumat Malam
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Jumat, 19.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Ruang Kelas, Kampus SV IPB
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-primary"></i>
+                                        Doa Malam
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Rabu, 19.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Ruang Kelas, Kampus SV IPB
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-primary"></i>
+                                        Doa Pagi
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Kamis, 06.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Ruang Kelas, Kampus SV IPB
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-primary"></i>
+                                        Ibadah PKK
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Rabu, 19.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Ruang Kelas, Kampus SV IPB
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kampus Sukabumi -->
+                <div class="row g-4">
+                    <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center mb-4">
+                            <div class="d-inline-block px-4 py-2 rounded-pill" style="background: linear-gradient(135deg, var(--secondary), var(--light-pink)); color: white;">
+                                <i class="bi bi-geo-alt-fill me-2"></i>
+                                <strong style="font-size: 1.1rem;">KAMPUS SUKABUMI</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-danger"></i>
+                                        Persekutuan Selasa Malam
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Selasa, 19.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Kampus SV IPB Sukabumi
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="schedule-card h-100">
+                                    <div class="schedule-day">
+                                        <i class="bi bi-calendar-event text-danger"></i>
+                                        Doa Malam
+                                    </div>
+                                    <div class="schedule-time">
+                                        <i class="bi bi-clock me-2"></i>Selasa, 19.00 WIB
+                                    </div>
+                                    <div class="schedule-location">
+                                        <i class="bi bi-geo-alt me-2"></i>Kampus SV IPB Sukabumi
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="row mt-5">
+                    <div class="col-12 text-center" data-aos="fade-up">
+                        <div class="card border-0 shadow-sm mx-auto" style="max-width: 700px; border-radius: 20px; background: linear-gradient(135deg, #E3F2FD, #FCE4EC);">
+                            <div class="card-body p-4">
+                                <i class="bi bi-people-fill text-primary mb-3" style="font-size: 3rem;"></i>
+                                <h4 class="mb-3">Ingin Bergabung dengan Persekutuan Kami?</h4>
+                                <p class="text-muted mb-4">
+                                    Anda diundang untuk hadir dan merasakan kehangatan persekutuan bersama keluarga FMK SV IPB. 
+                                    Mari bertumbuh bersama dalam iman!
+                                </p>
+                                <a href="https://wa.me/6281315462893?text=Halo%20FMK,%20saya%20ingin%20informasi%20lebih%20lanjut%20tentang%20jadwal%20ibadah" 
+                                target="_blank" 
+                                class="btn btn-primary-custom">
+                                    <i class="bi bi-whatsapp me-2"></i>Hubungi Kami untuk Info Lebih Lanjut
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-muted small mt-4 text-center" data-aos="fade-up">
+                    <i class="bi bi-exclamation-circle me-1"></i>
+                    Jadwal dan lokasi bersifat tentatif, dapat berubah sewaktu-waktu. Mohon cek media sosial FMK untuk update terbaru.
+                </p>
             </div>
         </section>
 
         <section id="form-doa" class="form-doa-section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up" style="color: white; text-shadow: 3px 3px 8px rgba(0,0,0,0.5); -webkit-text-fill-color: white;">Form Permohonan Doa</h2>
+                <h2 class="section-title" data-aos="fade-up" style="color: white; text-shadow: 3px 3px 8px rgba(0,0,0,0.5); -webkit-text-fill-color: white;">FMK Stay With You</h2>
                 <p class="section-subtitle" data-aos="fade-up" style="color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.4);">Kami ingin mendoakan Anda. Bagikan pokok doa Anda kepada kami</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
@@ -1691,25 +1924,8 @@
                     </div>
                 </div>
 
-                <div class="row g-4 mb-5">
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="highlight-card">
-                            <div class="highlight-icon icon-event-special">
-                                <i class="bi bi-bank"></i>
-                            </div>
-                            <h3 class="mb-3">Kas Kegiatan FMK</h3>
-                            <p class="text-muted mb-3">Mendukung operasional dan kegiatan rutin FMK</p>
-                            <ul class="text-start text-muted small">
-                                <li>Ibadah dan persekutuan rutin</li>
-                                <li>PKK (Pembinaan Kelompok Kecil)</li>
-                                <li>Doa pagi dan doa malam</li>
-                                <li>Perlengkapan ibadah & sound system</li>
-                                <li>Kebutuhan administrasi organisasi</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="row g-4 mb-5 justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="100">
                         <div class="highlight-card">
                             <div class="highlight-icon icon-kasih">
                                 <i class="bi bi-calendar-event-fill"></i>
@@ -1725,10 +1941,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-12 col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="200">
                         <div class="highlight-card">
                             <div class="highlight-icon icon-menabur">
-                                <i class="bi bi-hand-heart-fill"></i>
+                                <i class="bi bi-people-fill"></i>
                             </div>
                             <h3 class="mb-3">Kasih Peduli</h3>
                             <p class="text-muted mb-3">Menjangkau yang membutuhkan di sekitar kita</p>
@@ -1736,49 +1952,11 @@
                                 <li>Bantuan untuk keluarga berduka</li>
                                 <li>Dukungan mahasiswa sakit/kecelakaan</li>
                                 <li>Bantuan korban bencana alam</li>
-                                <li>Kunjungan kasih ke rumah sakit</li>
-                                <li>Program sosial ke masyarakat</li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="highlight-card" style="border: 2px solid #FF6B6B;">
-                            <div class="badge bg-danger position-absolute top-0 start-50 translate-middle">
-                                <i class="bi bi-exclamation-circle me-1"></i>URGENT
-                            </div>
-                            <div class="highlight-icon" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
-                                <i class="bi bi-lightning-charge-fill"></i>
-                            </div>
-                            <h3 class="mb-3">Kebutuhan Mendesak</h3>
-                            <p class="text-muted mb-3">Bantuan cepat untuk situasi darurat</p>
-                            <ul class="text-start text-muted small">
-                                <li>Berita duka anggota FMK/keluarga</li>
-                                <li>Musibah/kecelakaan yang membutuhkan bantuan segera</li>
-                                <li>Biaya pengobatan darurat</li>
-                                <li>Bantuan evakuasi bencana</li>
-                            </ul>
-                            <div class="alert alert-warning mt-3 mb-0 small">
+                            <div class="alert alert-info mt-3 mb-0 small">
                                 <i class="bi bi-info-circle me-1"></i>
-                                Info kebutuhan mendesak akan diumumkan via media sosial FMK
+                                Program Kasih Peduli rutin dilaksanakan sebagai wujud kepedulian nyata FMK kepada sesama
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="highlight-card">
-                            <div class="highlight-icon" style="background: linear-gradient(135deg, #9C27B0, #BA68C8);">
-                                <i class="bi bi-globe-asia-australia"></i>
-                            </div>
-                            <h3 class="mb-3">Pelayanan & Misi</h3>
-                            <p class="text-muted mb-3">Memperluas jangkauan pelayanan</p>
-                            <ul class="text-start text-muted small">
-                                <li>Misi Sukabumi & daerah lainnya</li>
-                                <li>Penginjilan kampus</li>
-                                <li>Pembelian Alkitab & buku rohani</li>
-                                <li>Pelatihan kepemimpinan</li>
-                                <li>Kerjasama dengan gereja lokal</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1826,7 +2004,7 @@
                                             <a href="https://wa.me/6281315462893?text=Halo%20FMK,%20saya%20baru%20saja%20mengirim%20donasi" 
                                                target="_blank" 
                                                class="btn btn-success btn-sm">
-                                                <i class="bi bi-whatsapp me-2"></i>+62 813-1546-2893
+                                                <i class="bi bi-whatsapp me-2"></i>+62 813-1546-2893 | Arkezia Artaloka
                                             </a>
                                             <p class="mb-0 mt-2 small text-muted">
                                                 <strong>Format:</strong> Nama - Nominal - Tujuan Donasi (contoh: Divo - 100rb - Kas FMK)
@@ -1837,7 +2015,7 @@
 
                                 <div class="alert alert-warning mt-3 mb-0">
                                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                    <strong>Catatan:</strong> Laporan penggunaan dana akan diposting secara berkala di media sosial FMK (Instagram & YouTube)
+                                    <strong>Catatan:</strong> Laporan penggunaan dana akan diposting secara berkala di media sosial FMK (Instagram ataupun YouTube)
                                 </div>
                             </div>
                         </div>
@@ -1894,7 +2072,7 @@
                             <div class="divisi-icon" style="background: linear-gradient(135deg, #66BB6A, #81C784);">
                                 <i class="bi bi-people-fill"></i>
                             </div>
-                            <h3>Seksi Kelompok Kecil</h3>
+                            <h3>Kelompok Kecil</h3>
                             <p class="text-muted mb-3">Tim PKK</p>
                             <p class="text-muted small">Mengkoordinasi dan membina kelompok-kelompok kecil FMK</p>
                             <div class="mt-3">
@@ -1908,8 +2086,8 @@
                             <div class="divisi-icon" style="background: linear-gradient(135deg, #AB47BC, #BA68C8);">
                                 <i class="bi bi-stars"></i>
                             </div>
-                            <h3>Seksi Doa</h3>
-                            <p class="text-muted mb-3">Tim Intercessor</p>
+                            <h3>Doa</h3>
+                            <p class="text-muted mb-3">Tim Doa</p>
                             <p class="text-muted small">Memimpin dan mengkoordinasi kehidupan doa FMK</p>
                             <div class="mt-3">
                                 <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
@@ -1923,7 +2101,7 @@
                                 <i class="bi bi-camera-fill"></i>
                             </div>
                             <h3>Multimedia dan Data</h3>
-                            <p class="text-muted mb-3">Tim Kreatif & IT</p>
+                            <p class="text-muted mb-3">Tim Kreatif & Design</p>
                             <p class="text-muted small">Dokumentasi, desain, dan pengelolaan data FMK</p>
                             <div class="mt-3">
                                 <span class="badge-divisi">Lihat Anggota <i class="bi bi-arrow-right ms-1"></i></span>
@@ -1968,14 +2146,14 @@
                     <h5>Kontak</h5>
                     <p><i class="bi bi-geo-alt-fill me-2"></i>Sekolah Vokasi IPB, Bogor</p>
                     <p><i class="bi bi-envelope-fill me-2"></i>fmk@apps.ipb.ac.id</p>
-                    <p><i class="bi bi-phone-fill me-2"></i>+62 813-1546-2893</p>
+                    <p><i class="bi bi-phone-fill me-2"></i>+62 813-1546-2893 | Arkezia Artaloka</p>
                     <p><i class="bi bi-clock-fill me-2"></i>Jadwal ibadah bersifat tentatif</p>
                 </div>
 
                 <div class="col-md-4">
                     <h5>Link Cepat</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#pkk">Pembinaan Kelompok Kecil</a></li>
+                        <li><a href="#ibadah">Jadwal Ibadah</a></li>
                         <li><a href="#form-doa">Form Permohonan Doa</a></li>
                         <li><a href="#menabur">Donasi & Persembahan</a></li>
                         <li><a href="#pengurus">Pengurus FMK</a></li>
@@ -2365,7 +2543,14 @@
             eventContainer.style.display = 'none';
             eventContainer.innerHTML = '';
             
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Scroll ke section pengurus
+            setTimeout(() => {
+                const pengurus = document.getElementById('pengurus');
+                if (pengurus) {
+                    const offsetTop = pengurus.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            }, 100);
         }
 
         function showEventNotFound(eventName) {
@@ -2868,6 +3053,8 @@
                 top: 40px;
             }
         }
+    
+        
     </style>
 
     <script>
